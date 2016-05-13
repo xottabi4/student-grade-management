@@ -1,10 +1,11 @@
-package com.sgm.spring.dao;
+package com.sgm.spring.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sgm.spring.dao.ProfessorDao;
 import com.sgm.spring.model.Professor;
 
 @Repository
@@ -33,7 +34,7 @@ public class ProfessorDaoImpl implements ProfessorDao {
 	@Override
 	public Professor findByName(String name) {
 		Professor professor = (Professor) getCurrentSession().get(Professor.class, name);
-		return null;
+		return professor;
 	}
 
 	@Override

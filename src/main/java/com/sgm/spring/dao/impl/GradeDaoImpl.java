@@ -1,8 +1,8 @@
-package com.sgm.spring.dao;
+package com.sgm.spring.dao.impl;
 
-import com.sgm.spring.model.Grade;
+import com.sgm.spring.dao.GradeDao;
 
-public interface Grade {
+public interface GradeDaoImpl {
 	
 	public void addGroup(GradeDao group);
 	public GradeDao getGroup(Long id);

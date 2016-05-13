@@ -5,11 +5,11 @@ import com.sgm.spring.model.Professor;
 public interface ProfessorDao {
 
 	// for login
-	Professor findByName(String name);
+	public Professor findByName(String name);
 
-	Professor getProfessor(Long id);
+	public Professor getProfessor(Long id);
 	
-	void saveProfessor(Professor professor);
+	public void addProfessor(Professor professor);
 
-	void deleteProfessorByID(Long id);
+	public void deleteProfessorByID(Long id);
 }

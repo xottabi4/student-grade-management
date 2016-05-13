@@ -1,17 +1,16 @@
 package com.sgm.spring.dao;
 
-import com.sgm.spring.model.Professor;
 import com.sgm.spring.model.Student;
 
 public interface StudentDao {
-	
+
 	// for login
-	Professor findByName(String name);
+	public Student findByName(String name);
 
-	Professor getStudent(Long id);
-	
-	void addStudent(Student student);
+	public Student getStudent(Long id);
 
-	void deleteStudentByID(Long id);
+	public void addStudent(Student student);
+
+	public void deleteStudentByID(Long id);
 
 }
