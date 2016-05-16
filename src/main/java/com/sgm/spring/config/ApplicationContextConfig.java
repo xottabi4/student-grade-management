@@ -13,11 +13,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
+import com.sgm.spring.config.security.UrlAuthenticationSuccessHandler;
 
 @Configuration
 @ComponentScan("com.sgm.spring.*")
@@ -69,6 +70,12 @@ public class ApplicationContextConfig {
 		return transactionManager;
 	}
 
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		AuthenticationSuccessHandler successHandler = new UrlAuthenticationSuccessHandler();
+		return successHandler;
+	}
+
 	@Bean(name = "viewResolver")
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -77,13 +84,5 @@ public class ApplicationContextConfig {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-	
-//	 @Bean
-//	 public UrlBasedViewResolver setupViewResolver() {
-//	 UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-//	 resolver.setPrefix("/WEB-INF/pages/");
-//	 resolver.setSuffix(".jsp");
-//	 resolver.setViewClass(JstlView.class);
-//	 return resolver;
-//	 }
+
 }

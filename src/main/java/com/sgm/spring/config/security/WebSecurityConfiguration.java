@@ -1,4 +1,4 @@
-package com.sgm.spring.config;
+package com.sgm.spring.config.security;
 
 import javax.sql.DataSource;
 
@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -17,8 +18,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	DataSource dataSource;
 
 	@Autowired
-	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+	AuthenticationSuccessHandler successHandler;
 
+	@Autowired
+	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 				.usersByUsernameQuery("select Username,Password, Active from user where username=?")
 				.authoritiesByUsernameQuery(
@@ -27,33 +30,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable(); // TODO add csrf if hav eenougth time
-		// The pages does not require login
-		http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout").permitAll();
-
-		// /userInfo page requires login as USER or ADMIN.
-		// If no login, it will redirect to /login page.
-		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyAuthority('professor', 'student')");
-
-		// For ADMIN only.
-		http.authorizeRequests().antMatchers("/admin").access("hasAuthority('professor')");
-
-		// When the user has logged in as XX.
-		// But access a page that requires role YY,
-		// AccessDeniedException will throw.
+		http.csrf().disable(); // TODO add csrf if have enough time
+		http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+		http.authorizeRequests().antMatchers("/student/**").access("hasAnyAuthority('student')");
+		http.authorizeRequests().antMatchers("/professor/**").access("hasAuthority('professor')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-
-		// Config for Login Form
 		http.authorizeRequests().and().formLogin()//
-				// Submit URL of login page.
-				.loginProcessingUrl("/j_spring_security_check") // Submit URL
+				.loginProcessingUrl("/j_spring_security_check")//
 				.loginPage("/login")//
-				.defaultSuccessUrl("/userInfo")//
+				.successHandler(successHandler)//
+//				.defaultSuccessUrl("/aaaaaaaaa")//
 				.failureUrl("/login?error=true")//
 				.usernameParameter("username")//
 				.passwordParameter("password")
 				// Config for Logout Page
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
-
 	}
 }
