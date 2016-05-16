@@ -20,11 +20,10 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-@ComponentScan("com.sgm.spring")
-@EnableWebMvc
+@ComponentScan("com.sgm.spring.*")
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
-public class WebAppContextConfig {
+public class ApplicationContextConfig {
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
 	private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
@@ -70,7 +69,7 @@ public class WebAppContextConfig {
 		return transactionManager;
 	}
 
-	@Bean
+	@Bean(name = "viewResolver")
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
@@ -78,13 +77,13 @@ public class WebAppContextConfig {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-	//
-	// @Bean
-	// public UrlBasedViewResolver setupViewResolver() {
-	// UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-	// resolver.setPrefix("/WEB-INF/pages/");
-	// resolver.setSuffix(".jsp");
-	// resolver.setViewClass(JstlView.class);
-	// return resolver;
-	// }
+	
+//	 @Bean
+//	 public UrlBasedViewResolver setupViewResolver() {
+//	 UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+//	 resolver.setPrefix("/WEB-INF/pages/");
+//	 resolver.setSuffix(".jsp");
+//	 resolver.setViewClass(JstlView.class);
+//	 return resolver;
+//	 }
 }
