@@ -7,17 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "student")
-public class Professor {
+@Table(name = "user_type")
+public class UserType {
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	@Column(name = "Name")
+	@Column(name = "Type_name")
 	private String name;
-
-	@Column(name = "Surname")
-	private String surname;
 
 	public Long getId() {
 		return id;
@@ -33,14 +30,6 @@ public class Professor {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 
 }

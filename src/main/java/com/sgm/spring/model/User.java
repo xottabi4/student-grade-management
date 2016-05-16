@@ -7,10 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "student")
-public class Student {
+@Table(name = "user")
+public class User {
 	@Id
 	@GeneratedValue
+	@Column(name = "ID", length = 11)
 	private Long id;
 
 	@Column(name = "Name")
@@ -19,16 +20,32 @@ public class Student {
 	@Column(name = "Surname")
 	private String surname;
 
+	@Column(name = "Username")
+	private String username;
+
+	@Column(name = "Password")
+	private String password;
+
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}
-
-//	public Student(Long id, String name, String surname) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.surname = surname;
-//	}
 
 	public void setId(Long id) {
 		this.id = id;

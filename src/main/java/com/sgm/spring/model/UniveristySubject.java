@@ -32,6 +32,5 @@ public class UniveristySubject {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+
 }
