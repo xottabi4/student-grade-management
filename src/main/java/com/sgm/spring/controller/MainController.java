@@ -21,7 +21,7 @@ public class MainController {
 		} else if (hasRole("professor")) {
 			return "redirect:/professor";
 		} else {
-			return "login/loginPage";
+			return "login/loginPageNew";
 		}
 	}
 

@@ -1,1 +1,6 @@
 /target/
+/scripts/
+/.settings/
+/bin/
+.classpath/
+.project/

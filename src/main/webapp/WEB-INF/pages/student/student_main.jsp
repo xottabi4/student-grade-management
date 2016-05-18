@@ -8,5 +8,9 @@
 	<h1>Message : ${message}</h1>
 	<br>
 	<h2>Welcome : ${username}</h2>
+	<br>
+	<form action="/student/grades">
+		<input type="submit" value="Check My Grades">
+	</form>
 </body>
 </html>

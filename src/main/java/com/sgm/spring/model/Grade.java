@@ -1,10 +1,21 @@
 package com.sgm.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Grade {
+@Entity
+@Table(name = "grade")
+public class Grade implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 896472859991174095L;
 
 	@Id
 	@GeneratedValue
@@ -13,14 +24,34 @@ public class Grade {
 	@Column(name = "Title")
 	private String title;
 
+	@Column(name = "Grade")
+	private Long grade;
+
 	@Column(name = "Date")
 	private String date;
 
 	@Column(name = "Description")
 	private String description;
 
+	@Column(name = "Student_ID")
+	private Long studentID;
+
+	@Column(name = "Task_ID")
+	private Long subjectID;
+
+	@Column(name = "Group_ID")
+	private Long facultyID;
+
 	public Long getId() {
 		return id;
+	}
+
+	public Long getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(Long studentID) {
+		this.studentID = studentID;
 	}
 
 	public void setId(Long id) {
@@ -33,6 +64,14 @@ public class Grade {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Long getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Long grade) {
+		this.grade = grade;
 	}
 
 	public String getDate() {
@@ -51,48 +90,20 @@ public class Grade {
 		this.description = description;
 	}
 
-	public int getCourse() {
-		return course;
-	}
-
-	public void setCourse(int course) {
-		this.course = course;
-	}
-
-	public int getProfessorID() {
-		return professorID;
-	}
-
-	public void setProfessorID(int professorID) {
-		this.professorID = professorID;
-	}
-
-	public int getSubjectID() {
+	public Long getSubjectID() {
 		return subjectID;
 	}
 
-	public void setSubjectID(int subjectID) {
+	public void setSubjectID(Long subjectID) {
 		this.subjectID = subjectID;
 	}
 
-	public int getFacultyID() {
+	public Long getFacultyID() {
 		return facultyID;
 	}
 
-	public void setFacultyID(int facultyID) {
+	public void setFacultyID(Long facultyID) {
 		this.facultyID = facultyID;
 	}
-
-	@Column(name = "Grade")
-	private int course;
-
-	@Column(name = "Student_ID")
-	private int professorID;
-
-	@Column(name = "Task_ID")
-	private int subjectID;
-
-	@Column(name = "Group_ID")
-	private int facultyID;
 
 }

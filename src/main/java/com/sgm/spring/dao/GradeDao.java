@@ -1,15 +1,17 @@
 package com.sgm.spring.dao;
 
+import java.util.List;
+
 import com.sgm.spring.model.Grade;
 
 public interface GradeDao {
 
-	public void addGroup(Grade group);
+	public void addGrade(Grade grade);
 
-	public Grade getGroup(Long id);
+	public List<Grade> getGrades(Long userID);
 
-	public void updateGroup(Grade group);
+	public void updateGrade(Grade grade);
 
-	public void deleteGroup(int id);
+	public void deleteGrade(Long id);
 
 }

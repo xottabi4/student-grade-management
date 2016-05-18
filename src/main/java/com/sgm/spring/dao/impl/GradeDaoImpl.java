@@ -1,33 +1,49 @@
 package com.sgm.spring.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.sgm.spring.dao.GradeDao;
 import com.sgm.spring.model.Grade;
 
-public class GradeDaoImpl implements GradeDao{
+@Component
+public class GradeDaoImpl implements GradeDao {
 
-	@Override
-	public void addGroup(Grade group) {
-		// TODO Auto-generated method stub
-		
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	private Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
-	public Grade getGroup(Long id) {
+	public void addGrade(Grade grade) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 	@Override
-	public void updateGroup(Grade group) {
-		// TODO Auto-generated method stub
-		
+	public List<Grade> getGrades(Long userID) {
+		String sql = "from Grade g where g.studentID = :userID";
+		Query query = getCurrentSession().createQuery(sql).setParameter("userID", userID);
+		return query.list();
 	}
 
 	@Override
-	public void deleteGroup(int id) {
+	public void updateGrade(Grade grade) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
+	@Override
+	public void deleteGrade(Long id) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
