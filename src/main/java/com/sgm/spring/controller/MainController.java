@@ -28,9 +28,9 @@ public class MainController {
 	@RequestMapping(value = "/professor", method = RequestMethod.GET)
 	public String professorPage(Model model, Principal principal) {
 		String userName = principal.getName();
-		model.addAttribute("message", "HI PROFESOR !!!!!!!!!");
+//		model.addAttribute("message", "HI PROFESOR !!!!!!!!!");
 		model.addAttribute("username", userName);
-		return "professor/professor_main";
+		return "professor/professorMain";
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.GET)
@@ -38,7 +38,7 @@ public class MainController {
 		String userName = principal.getName();
 		model.addAttribute("message", "HI STUDENT !!!!!!!!!");
 		model.addAttribute("username", userName);
-		return "student/student_main";
+		return "student/studentMain";
 	}
 
 	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
