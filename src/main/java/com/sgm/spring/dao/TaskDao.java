@@ -1,9 +1,11 @@
 package com.sgm.spring.dao;
 
+import java.util.List;
+
 import com.sgm.spring.model.Task;
 
 public interface TaskDao {
 
-	Task getTask(Long id);
+	public List<Task> getTasks();
 
 }
