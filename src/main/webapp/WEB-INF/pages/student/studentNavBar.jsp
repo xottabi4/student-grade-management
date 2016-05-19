@@ -6,13 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Professor</a>
+      <a class="navbar-brand" href="/">Student</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="#">Add grades</a></li>
-        <li><a href="/professor/createGroup">Create Group</a></li>
+        <li><a href="/student/grades">My grades</a></li>
+        <li><a href="/student/subjects">My Subjects</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>

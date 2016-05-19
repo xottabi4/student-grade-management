@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SGM create group</title>
+<title>SGM professor create group</title>
 
 <link href="<c:url value="/resources/css/pageLayout.css" />"
 	rel="stylesheet">
@@ -15,7 +15,6 @@
 	href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -38,7 +37,6 @@
 					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
 					aliquip ex ea commodo consequat.</p>
 				<hr>
-
 				<div class="">
 					<table class="table table-responsive table-striped table-bordered table-hover table-condensed">
 						<thead>
