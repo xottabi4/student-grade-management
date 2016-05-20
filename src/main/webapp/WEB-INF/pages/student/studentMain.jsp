@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SGM home</title>
+<title>SGM student home</title>
 
 <link href="<c:url value="/resources/css/pageLayout.css" />"
 	rel="stylesheet">
@@ -20,12 +20,14 @@
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
+<script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
+
 <body>
 	<jsp:include page="/WEB-INF/pages/student/studentNavBar.jsp" />
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
-			<div class="col-sm-8 text-left">
+			<div id = "content" class=" wrapper col-sm-8 text-left">
 				<h1>Message : ${message}</h1>
 				<br>
 				<h2>Welcome : ${username}</h2>

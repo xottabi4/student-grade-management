@@ -18,6 +18,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+ <script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
 </head>
 
 <body>
@@ -27,18 +29,10 @@
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
 				<h1>Welcome</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					enim ad minim veniam, quis nostrud exercitation ullamco laboris
-					nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum consectetur adipiscing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat.</p>
 				<hr>
-				<div class="">
-					<table class="table table-responsive table-striped table-bordered table-hover table-condensed">
+				<div class="col-md-6 text-left">
+					<table
+						class="table table-responsive table-striped table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -66,6 +60,31 @@
 								<td>New York</td>
 								<td>USA</td>
 							</tr>
+							<tr>
+								<td>1</td>
+								<td>Anna</td>
+								<td>Pitt</td>
+								<td>35</td>
+								<td>New York</td>
+								<td>USA</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-6 text-left">
+					<table
+						class="table table-responsive table-striped table-bordered table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Firstname</th>
+								<th>Lastname</th>
+								<th>Age</th>
+								<th>City</th>
+								<th>Country</th>
+							</tr>
+						</thead>
+						<tbody>
 							<tr>
 								<td>1</td>
 								<td>Anna</td>

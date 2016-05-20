@@ -19,6 +19,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
+
 <style type="text/css">
 table {
 	margin-top: 10px;
@@ -40,7 +42,7 @@ table  td {
 
 <body>
 	<jsp:include page="/WEB-INF/pages/student/studentNavBar.jsp" />
-	<div class="container-fluid text-center">
+	<div class="wrapper container-fluid text-center">
 		<div class="row content">
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
