@@ -46,16 +46,16 @@ public class ProfessorController {
 
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.GET)
 	public String getCreateGroup(Model model) {
-		return "professor/professorCreateGroup";
-	}
-
-	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
-	public String postCreateGroup(Model model) {
 		List<Faculty> facultys = professorService.getFacultys();
 		for (Faculty faculty : facultys) {
 			System.out.println(faculty.getTitle());
 		}
 		model.addAttribute("facultys", facultys);
+		return "professor/professorCreateGroup";
+	}
+
+	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
+	public String postCreateGroup(Model model) {
 		return "professor/professorCreateGroup";
 	}
 

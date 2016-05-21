@@ -48,7 +48,7 @@ public class FacultyDaoImpl implements FacultyDao {
 	@Override
 	public List<Faculty> getFacultys() {
 //		from User u where u.username
-		String sql = "select from Faculty f";
+		String sql = "from Faculty";
 		Query query = getCurrentSession().createQuery(sql);
 		List<Faculty> faculty = query.list();
 		return faculty;
