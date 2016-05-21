@@ -19,9 +19,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
- <script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
+<script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
 </head>
 
+<style>
+a { display:block; /* Pre-existing code */ }
+a.inline {
+    display:inline;
+}
+</style>
 <body>
 	<jsp:include page="/WEB-INF/pages/professor/professorNavBar.jsp" />
 	<div class="container-fluid text-center">
@@ -29,6 +35,33 @@
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
 				<h1>Welcome</h1>
+				<!-- choose faculty -->
+				<div class="list-group">
+					<c:forEach items="${facultys}" var="faculty">
+						<a href="#" class="inline list-group-item active"> ${faculty.title} </a>
+					</c:forEach>
+					<!--<a href="#" class="inline list-group-item active"> Cras justo odio </a>
+					 <a href="#" class="inline list-group-item">Dapibus ac facilisis in</a> 
+					 <a href="#" class="inline list-group-item">Morbi leo risus</a> 
+					 <a href="#" class="inline list-group-item">Porta ac consectetur ac</a> 
+					 <a href="#" class="inline list-group-item">Vestibulum at eros</a> -->
+				</div>
+				<!-- choose course -->
+				<div class="list-group">
+					<a href="#" class="inline list-group-item active"> Cras justo odio </a>
+					 <a href="#" class="inline list-group-item">Dapibus ac facilisis in</a> 
+					 <a href="#" class="inline list-group-item">Morbi leo risus</a> 
+					 <a href="#" class="inline list-group-item">Porta ac consectetur ac</a> 
+					 <a href="#" class="inline list-group-item">Vestibulum at eros</a>
+				</div>
+				<!-- choose group -->
+				<div class="list-group">
+					<a href="#" class="inline list-group-item active"> Cras justo odio </a>
+					 <a href="#" class="inline list-group-item">Dapibus ac facilisis in</a> 
+					 <a href="#" class="inline list-group-item">Morbi leo risus</a> 
+					 <a href="#" class="inline list-group-item">Porta ac consectetur ac</a> 
+					 <a href="#" class="inline list-group-item">Vestibulum at eros</a>
+				</div>
 				<hr>
 				<div class="col-md-6 text-left">
 					<table

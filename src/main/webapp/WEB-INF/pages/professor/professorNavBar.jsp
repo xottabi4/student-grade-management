@@ -11,7 +11,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="menu nav navbar-nav">
 				<li><a href="/professor">Home</a></li>
-				<li><a href="#">Add grades</a></li>
+				<li><a href="/professor/addGrades">Add grades</a></li>
 				<li><a href="/professor/createGroup">Create Group</a></li>
 				<li><a href="#">About</a></li>
 				<li><a href="#">Projects</a></li>
