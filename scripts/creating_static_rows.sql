@@ -16,3 +16,16 @@ select * from user_type;
 
 INSERT INTO grade(Title,Grade,Date,Description,Student_ID,Task_ID,Group_ID)
 VALUES ('Title',10, 'Date','Description',2,1,1);
+
+
+INSERT INTO faculty(Title)
+VALUES ('IT'),('EPF'),('Tulki');
+
+select * from faculty;
+select * from student_group;
+select * from university_subject;
+select * from user;
+
+DELETE FROM faculty
+WHERE ID >2;
+ALTER TABLE faculty AUTO_INCREMENT=1

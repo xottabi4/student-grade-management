@@ -1,5 +1,7 @@
 package com.sgm.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +10,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "faculty")
-public class Faculty {
+public class Faculty implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8935395158588742034L;
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID", length = 11)
 	private Long id;
+
+	@Column(name = "Title")
+	private String title;
 
 	public Long getId() {
 		return id;
@@ -29,8 +40,4 @@ public class Faculty {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	@Column(name = "Title")
-	private String title;
-
 }

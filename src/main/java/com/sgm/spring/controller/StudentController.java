@@ -27,7 +27,7 @@ public class StudentController {
 	public String allStudentGrades(Model model, Principal principal) {
 		List<Grade> grades = studentService.getGrades(principal.getName());
 		model.addAttribute("studentGrades", grades);
-		return "student/student_grades";
+		return "student/studentGrades";
 
 	}
 
@@ -37,7 +37,7 @@ public class StudentController {
 		List<Task> taskList = studentService.getTasks();
 		model.addAttribute("studentSubjects", subjects);
 		model.addAttribute("studentTasks", taskList);
-		return "student/student_subjects";
+		return "student/studentSubjects";
 
 	}
 

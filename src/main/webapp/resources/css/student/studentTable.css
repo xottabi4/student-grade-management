@@ -1,0 +1,15 @@
+table {
+	margin-top: 10px;
+	border: solid black 1px;
+}
+
+table  td {
+	padding: 5px;
+}
+
+.message {
+	font-size: 90%;
+	color: blue;
+	font-style: italic;
+	margin-top: 30px;
+}

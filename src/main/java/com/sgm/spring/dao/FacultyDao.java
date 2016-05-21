@@ -1,6 +1,9 @@
 package com.sgm.spring.dao;
 
+import java.util.List;
+
 import com.sgm.spring.model.Faculty;
+import com.sgm.spring.model.Task;
 
 public interface FacultyDao {
 
@@ -11,5 +14,7 @@ public interface FacultyDao {
 	public void updateFaculty(Faculty faculty);
 
 	public void deleteGrade(int id);
+
+	public List<Faculty> getFacultys();
 
 }

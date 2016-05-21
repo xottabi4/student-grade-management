@@ -5,15 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Signin Template for Bootstrap</title>
+<link href="<c:url value="resources/css/signin.css" />" rel="stylesheet">
 <link rel='stylesheet'
 	href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
 
 </head>
 
