@@ -40,36 +40,59 @@ table  td {
 </style>
 </head>
 
+<style>
+a {
+	display: block;
+}
+
+a.inline {
+	display: inline;
+}
+</style>
+
+
 <body>
 	<jsp:include page="/WEB-INF/pages/student/studentNavBar.jsp" />
 	<div class="wrapper container-fluid text-center">
 		<div class="row content">
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
+				<div class="col-sm-6">
+					<div class=" list-group">
+						<c:forEach items="${studentSubjects}" var="subjectInfo">
+							<a href="#" class="inline list-group-item active">${subjectInfo.title}</a>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class=" list-group">
+						<c:forEach items="${studentTasks}" var="taskInfo">
+							<a href="#" class="inline list-group-item active">${taskInfo.title}</a>
+						</c:forEach>
+					</div>
+				</div>
 				<table border="1">
 					<tr>
-						<th>Subjects</th>
-						<th>Choose</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Grade</th>
 					</tr>
-					<c:forEach items="${studentSubjects}" var="subjectInfo">
+					
+					<c:forEach items="${studentGrades}" var="info">
 						<tr>
-							<td>${subjectInfo.title}</td>
-							<td>${subjectInfo.id}</td>
+							<td>${info.title}</td>
+							<td>${info.date}</td>
+							<td>${info.description}</td>
+							<td>${info.grade}</td>
 						</tr>
+
 					</c:forEach>
 				</table>
-				<table border="1">
-					<tr>
-						<th>Tasks</th>
-						<th>Choose</th>
-					</tr>
-					<c:forEach items="${studentTasks}" var="taskInfo">
-						<tr>
-							<td>${taskInfo.title}</td>
-							<td>${taskInfo.id}</td>
-						</tr>
-					</c:forEach>
-				</table>
+			
+				
+				
+				
 			</div>
 			<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
 		</div>

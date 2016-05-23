@@ -23,18 +23,20 @@ public class StudentController {
 	@Autowired
 	StudentService studentService;
 
-	@RequestMapping(value = "/student/grades", method = RequestMethod.GET)
-	public String allStudentGrades(Model model, Principal principal) {
-		List<Grade> grades = studentService.getGrades(principal.getName());
-		model.addAttribute("studentGrades", grades);
-		return "student/studentGrades";
-
-	}
+	// @RequestMapping(value = "/student/subjects", method = RequestMethod.GET)
+	// public String allStudentGrades(Model model, Principal principal) {
+	// List<Grade> grades = studentService.getGrades(principal.getName());
+	// model.addAttribute("studentGrades", grades);
+	// return "student/studentSubjects";
+	//
+	// }
 
 	@RequestMapping(value = "/student/subjects", method = RequestMethod.GET)
-	public String allStudentSubjects(Model model) {
+	public String allStudentSubjects(Model model, Principal principal) {
 		List<UniveristySubject> subjects = studentService.getSubjects();
 		List<Task> taskList = studentService.getTasks();
+		List<Grade> grades = studentService.getGrades(principal.getName());
+		model.addAttribute("studentGrades", grades);
 		model.addAttribute("studentSubjects", subjects);
 		model.addAttribute("studentTasks", taskList);
 		return "student/studentSubjects";

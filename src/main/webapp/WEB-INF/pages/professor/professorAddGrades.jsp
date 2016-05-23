@@ -20,6 +20,11 @@
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
+<script src="<c:url value="/resources/js/profesor/addGrades.js" />"></script>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ <script type="text/javascript" src="script.js"></script>
+
+
 </head>
 
 <body>
@@ -31,7 +36,7 @@
 				<h1>Welcome</h1>
 				<hr>
 				<table
-					class="table table-responsive table-striped table-bordered table-hover table-condensed">
+					class="editableTable table-responsive table-striped table-bordered table-hover table-condensed">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -40,6 +45,7 @@
 							<th>Age</th>
 							<th>City</th>
 							<th>Country</th>
+							<th>Grades</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -50,6 +56,7 @@
 							<td>35</td>
 							<td>New York</td>
 							<td>USA</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>1</td>
@@ -58,6 +65,7 @@
 							<td>35</td>
 							<td>New York</td>
 							<td>USA</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>1</td>
@@ -66,13 +74,22 @@
 							<td>35</td>
 							<td>New York</td>
 							<td>USA</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
-	</div>
 	</div>
 	<jsp:include page="/WEB-INF/pages/footer.jsp" />
 </body>

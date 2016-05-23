@@ -1,4 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,4 +70,4 @@ table  td {
 	</div>
 	<jsp:include page="/WEB-INF/pages/footer.jsp" />
 </body>
-</html>
+</html>-->

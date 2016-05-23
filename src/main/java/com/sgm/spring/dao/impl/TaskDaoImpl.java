@@ -23,7 +23,7 @@ public class TaskDaoImpl implements TaskDao {
 	
 	@Override
 	public List<Task> getTasks() {
-		String sql = "select title from " + Task.class.getName() + " title";
+		String sql = "from " + Task.class.getName();
 		Query query = getCurrentSession().createQuery(sql);
 		List<Task> task = query.list();
 		return task;
