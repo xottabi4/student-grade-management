@@ -1,14 +1,23 @@
 package com.sgm.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "student_group")
-public class StudentGroup {
+public class StudentGroup implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5004118781786268667L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -17,7 +26,19 @@ public class StudentGroup {
 	private String title;
 
 	@Column(name = "Course")
-	private int course;
+	private Long course;
+
+	@ManyToOne
+	@JoinColumn(name = "Professor_ID")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "Subject_ID")
+	private UniveristySubject subject;
+
+	@ManyToOne
+	@JoinColumn(name = "Faculty_ID")
+	private Faculty faculty;
 
 	public Long getId() {
 		return id;
@@ -35,45 +56,36 @@ public class StudentGroup {
 		this.title = title;
 	}
 
-	public int getCourse() {
+	public Long getCourse() {
 		return course;
 	}
 
-	public void setCourse(int course) {
+	public void setCourse(Long course) {
 		this.course = course;
 	}
 
-	public int getProfessorID() {
-		return professorID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setProfessorID(int professorID) {
-		this.professorID = professorID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getSubjectID() {
-		return subjectID;
+	public UniveristySubject getSubject() {
+		return subject;
 	}
 
-	public void setSubjectID(int subjectID) {
-		this.subjectID = subjectID;
+	public void setSubject(UniveristySubject subject) {
+		this.subject = subject;
 	}
 
-	public int getFacultyID() {
-		return facultyID;
+	public Faculty getFaculty() {
+		return faculty;
 	}
 
-	public void setFacultyID(int facultyID) {
-		this.facultyID = facultyID;
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
 	}
-
-	@Column(name = "Professor_ID")
-	private int professorID;
-
-	@Column(name = "Subject_ID")
-	private int subjectID;
-
-	@Column(name = "Faculty_ID")
-	private int facultyID;
 
 }

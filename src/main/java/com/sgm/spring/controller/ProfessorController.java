@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.sgm.spring.model.Faculty;
+import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.UniveristySubject;
 import com.sgm.spring.service.ProfessorService;
 
@@ -44,15 +45,15 @@ public class ProfessorController {
 	}
 
 	// get group controller with post
-//	@RequestMapping(value = "/professor/createGroup/viewGroups", method = RequestMethod.POST)
-//	public String getViewGroups(@RequestParam(value = "selectedFaculty") String selectedFacultyTitle,
-//			@RequestParam(value = "selectedSubject") String selectedSubjectTitle,
-//			@RequestParam(value = "selectedCourse") Long selectedCourseID, Model model) {
-////		List<UniveristySubject> subjects = professorService.getSubjects(selectedFacultyTitle);
-////		List<StudentGroup> groups;
-////		model.addAttribute("subjects", groups);
-//		return "professor/professorViewGroups";
-//	}
+	@RequestMapping(value = "/professor/createGroup/viewGroups", method = RequestMethod.POST)
+	public String getViewGroups(@RequestParam(value = "selectedFaculty") String selectedFacultyTitle,
+			@RequestParam(value = "selectedSubject") String selectedSubjectTitle,
+			@RequestParam(value = "selectedCourse") String selectedCourseID, Model model) {
+		List<StudentGroup> groups = professorService.getStudentGroup(selectedFacultyTitle, selectedCourseID,
+				selectedSubjectTitle);
+		model.addAttribute("groups", groups);
+		return "professor/professorViewGroups";
+	}
 
 	// TODO PROFESSOR CREATE GROUP
 

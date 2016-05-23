@@ -23,17 +23,10 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 
 	@Override
 	public List<UniveristySubject> getSubjects() {
-<<<<<<< HEAD
 		String sql = "from UniveristySubject";
 		Query query = getCurrentSession().createQuery(sql);
 		List<UniveristySubject> subjects = query.list();
 		return subjects;
-=======
-		  String sql = "from " + UniveristySubject.class.getName();
-	        Query query = getCurrentSession().createQuery(sql);
-	        List<UniveristySubject> subjects = query.list();
-	        return subjects;
->>>>>>> 6615e4a69b73dc2bf8aa980f95285352cc796cc3
 	}
 
 	@Override
@@ -45,10 +38,9 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 	}
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
-//		select a from Article a 
-//		inner join a.categories c
-//		where c.category = :categoryName
-		String sql = "select u from UniveristySubject u inner join u.faculty f where f.title = :faculty";
+		String sql = "select u from UniveristySubject u "
+				+ " inner join u.faculty f "
+				+ "where f.title = :faculty";
 		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle);
 		List<UniveristySubject> subjects = query.list();
 		return subjects;

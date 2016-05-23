@@ -31,6 +31,12 @@ VALUES
 ('1.grupa EPF pasaules ekonom 2kurss',2,1,4,2),
 ('1.grupa Tulki tulkosana no krievu val 3kurss',3,1,3,3);
 
+INSERT INTO student_group(Title,Course,Professor_ID,Subject_ID,Faculty_ID)
+VALUES 
+('1.grupa IT Matem 1kurss',2,1,1,1);
+UPDATE student_group
+SET Title='1.grupa IT Matem 2kurss'
+WHERE ID=5;
 
 INSERT INTO task(Title)
 VALUES ('MD'),('KD'),('Eksāmens');

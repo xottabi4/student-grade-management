@@ -1,70 +1,76 @@
 $(document).ready(function() {
-    // var selectedFacultyTitle;
-    // var selectedCourseTitle;
-    // var selectedSubjectTitle;
-    //TODO jquery multiple onclik functions
-    $(".faculty-selection").on('click',  function() {
+    var selectedFacultyTitle;
+    var selectedCourseTitle;
+    var selectedSubjectTitle;
+
+    $("#faculty-selection>li").on('click', function(e) {
+        e.preventDefault();
+        $("#course-chooser").empty();
+        $("#subject-chooser").empty();
+        $("#group-chooser").empty();
         var $this = $(this);
-        // selectedFacultyTitle= $this.text();
+        selectedFacultyTitle = $this.text();
         $(".faculty-selection").parents('li,ul').removeClass('active');
-        $this.parents('li,ul').addClass('active');
+        $this.addClass('active');
         var url = "/professor/createGroup/viewCourses";
         $("#course-chooser").load(url);
-        // e.stopImmediatePropagation();
         return false;
     });
-    $(".course-selection").on('click',function() {
-        // alert(selectedFacultyTitle);
+    $("#course-chooser").on('click', 'li', function(e) {
+        $("#subject-chooser").empty();
+        $("#group-chooser").empty();
+        e.preventDefault();
         var $this = $(this);
-        alert($this);
+        selectedCourseTitle = $this.text();
         $(".course-selection").parents('li,ul').removeClass('active');
-        $this.parents('li,ul').addClass('active');
+        $this.addClass('active');
         var url = "/professor/createGroup/viewSubjects";
-        // 		var selectedFacultyTitle ="IT";
-        // //			$(".faculty-selection").find(".active").text();
-        // //		alert(selectedFacultyTitle);
-        // 		$.post(url, {
-        // 			selectedFaculty : selectedFacultyTitle
-        // 		}, function(result) {
-        // 			$("#subject-chooser").html(result);
-        // 		});
+        $.post(url, {
+            selectedFaculty: selectedFacultyTitle
+        }, function(result) {
+            $("#subject-chooser").html(result);
+        });
+        return false;
+    });
+    $("#subject-chooser").on('click', 'li', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        $(".subject-selection").parents('li,ul').removeClass('active');
+        $this.addClass('active');
+        selectedSubjectTitle = $this.text();
+        var url = "/professor/createGroup/viewGroups";
+        $.post(url, {
+            selectedFaculty: selectedFacultyTitle,
+            selectedSubject: selectedSubjectTitle,
+            selectedCourse: selectedCourseTitle
+        }, function(result) {
+            $("#group-chooser").html(result);
+        });
+        return false;
+    });
+    //TODO Make field for group title, make table with id(matrikula), name ,surname
+    //  that you can edit+ when its filled add row, add create button after pressing
+    // it post method to controller with all inputed data and redirect to home
+    $("#group-chooser").on('click', function(e) {
+        e.preventDefault();
+        var $this = $(this);
+        $(".group-selection").parents('li,ul').removeClass('active');
+        $this.addClass('active');
+        var url = "/professor/createGroup/viewStudents";
+        //		$.post(url, {
+        //			selectedFaculty : selectedFacultyTitle
+        //			selectedSubject : selectedSubjectTitle
+        //			selectedCourse : selectedCourseTitle
+        //		}, function(result) {
+        //			$("#student-chooser").html(result);
+        //		});
         return false;
     });
 });
 /*
 
-	$(".subject-selection").on('click', function(e) {
-		e.preventDefault();
-		var $this = $(this);
-		$(".subject-selection").parents('li,ul').removeClass('active');
-		$this.parents('li,ul').addClass('active');
-		var url = $(this).attr('href');
-		var selectedFacultyTitle = $( ".faculty-selection option:selected" ).text();
-		var selectedCourseTitle = $( "..course-selection option:selected" ).text();
-		var selectedSubjectTitle = $(this).text();
-		$.post(url, {
-			selectedFaculty : selectedFacultyTitle
-			selectedSubject : selectedSubjectTitle
-			selectedCourse : selectedCourseTitle
-		}, function(result) {
-			$("#group-chooser").html(result);
-		});
-		return false;
-	});
-	$(".group-selection").on('click', function(e) {
-		e.preventDefault();
-		var $this = $(this);
-		$(".group-selection").parents('li,ul').removeClass('active');
-		$this.parents('li,ul').addClass('active');
-//		$.post(url, {
-//			selectedFaculty : selectedFacultyTitle
-//			selectedSubject : selectedSubjectTitle
-//			selectedCourse : selectedCourseTitle
-//		}, function(result) {
-//			$("#group-chooser").html(result);
-//		});
-		return false;
-	});
+
+
 
 });
 */

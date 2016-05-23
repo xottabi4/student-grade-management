@@ -7,16 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.sgm.spring.dao.FacultyDao;
 import com.sgm.spring.dao.GradeDao;
+import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.dao.TaskDao;
 import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.dao.UserDao;
 import com.sgm.spring.model.Faculty;
-import com.sgm.spring.model.Grade;
-import com.sgm.spring.model.Task;
+import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.UniveristySubject;
-import com.sgm.spring.model.User;
 import com.sgm.spring.service.ProfessorService;
-import com.sgm.spring.service.StudentService;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
@@ -31,6 +29,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 	TaskDao taskDao;
 	@Autowired
 	FacultyDao facultyDao;
+	@Autowired
+	StudentGroupDao studentGroupDao;
 
 	@Override
 	public List<Faculty> getFacultys() {
@@ -44,9 +44,16 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
-//		Faculty faculty = facultyDao.getFaculty(facultyTitle);
-//		return subjectDao.getSubjects(faculty.getId());
-		return subjectDao.getSubjects(facultyTitle);
+		// Faculty faculty = facultyDao.getFaculty(facultyTitle);
+		// return subjectDao.getSubjects(faculty.getId());
+		return subjectDao.getSubjects(facultyTitle.trim());
+	}
+
+	@Override
+	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle) {
+		Long courseID = Long.valueOf(course.trim()).longValue();
+		return studentGroupDao.getGroups(facultyTitle.trim(), courseID,
+				subjectTitle.trim());
 	}
 
 }
