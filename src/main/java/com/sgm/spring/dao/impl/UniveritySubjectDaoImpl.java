@@ -23,7 +23,7 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 	
 	@Override
 	public List<UniveristySubject> getSubjects() {
-		  String sql = "select title from " + UniveristySubject.class.getName() + " title";
+		  String sql = "from " + UniveristySubject.class.getName();
 	        Query query = getCurrentSession().createQuery(sql);
 	        List<UniveristySubject> subjects = query.list();
 	        return subjects;
