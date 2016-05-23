@@ -34,8 +34,19 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Override
 	public List<Faculty> getFacultys() {
-		// TODO Auto-generated method stub
 		return facultyDao.getFacultys();
+	}
+
+	@Override
+	public List<UniveristySubject> getSubjects(Long facultyID) {
+		return subjectDao.getSubjects(facultyID);
+	}
+
+	@Override
+	public List<UniveristySubject> getSubjects(String facultyTitle) {
+//		Faculty faculty = facultyDao.getFaculty(facultyTitle);
+//		return subjectDao.getSubjects(faculty.getId());
+		return subjectDao.getSubjects(facultyTitle);
 	}
 
 }

@@ -66,7 +66,12 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `student_grade_management`.`university_subject` (
   `ID` INT(11) NOT NULL AUTO_INCREMENT,
   `Title` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`ID`))
+  `Faculty_ID` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `university_subject_ibfk_1_idx` (`Faculty_ID` ASC),
+  CONSTRAINT `university_subject_ibfk_1`
+    FOREIGN KEY (`Faculty_ID`)
+    REFERENCES `student_grade_management`.`faculty` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 

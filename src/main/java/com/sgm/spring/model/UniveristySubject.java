@@ -1,21 +1,39 @@
 package com.sgm.spring.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "university_subject")
-public class UniveristySubject {
+public class UniveristySubject implements Serializable{
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "Title")
 	private String title;
+
+	@ManyToOne
+	@JoinColumn(name = "Faculty_ID")
+	private Faculty faculty;
+
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
 
 	public Long getId() {
 		return id;

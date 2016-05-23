@@ -8,6 +8,10 @@ public interface UniversitySubjectDao {
 
 	public List<UniveristySubject> getSubjects();
 
+	public List<UniveristySubject> getSubjects(Long facultyID);
+
+	public List<UniveristySubject> getSubjects(String facultyTitle);
+
 	public void addSubject(UniveristySubject subject);
 
 	public void updateSubject(UniveristySubject subject);

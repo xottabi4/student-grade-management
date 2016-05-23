@@ -20,7 +20,6 @@
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
-<script src="<c:url value="/resources/js/professor/createGroup.js" />"></script>
 </head>
 
 <body>
@@ -31,26 +30,24 @@
 			<div class="col-sm-8 text-left">
 				<h1>Welcome</h1>
 				<p>choose faculty</p>
-				<ul id="faculty-selection" class="nav nav-pills">
+				<ul class="nav nav-pills">
 					<c:forEach items="${facultys}" var="faculty">
-						<li><a class="faculty-selection" href="#">${faculty.title} </a></li>
+						<li class="active"><a href="#">${faculty.title} </a></li>
 					</c:forEach>
 				</ul>
-
-				<div id="course-chooser">
-					<p>choose course</p>
-					<ul class="nav nav-pills">
-						<li><a class="course-selection" href="#">1 </a></li>
-						<li><a class="course-selection" href="#">2 </a></li>
-						<li><a class="course-selection" href="#">3 </a></li>
-						<li><a class="course-selection" href="#">4 </a></li>
-					</ul>
-				</div>
-
-				<div id="subject-chooser"></div>
-
-				<div id="group-chooser"></div>
-
+				<p>choose course</p>
+				<ul class="nav nav-pills">
+					<li class="active"><a href="#">1 </a></li>
+					<li ><a href="#">2 </a></li>
+					<li ><a href="#">3</a></li>
+					<li ><a href="#">4 </a></li>
+				</ul>
+				<p>choose group</p>
+				<ul class="nav nav-pills">
+					<c:forEach items="${groups}" var="group">
+						<li class="active"><a href="#">${group.title} </a></li>
+					</c:forEach>
+				</ul>
 				<hr>
 				<div class="col-md-6 text-left">
 					<table

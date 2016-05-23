@@ -9,6 +9,8 @@ public interface FacultyDao {
 
 	public Faculty getFaculty(Long id);
 
+	public Faculty getFaculty(String title);
+
 	public void addFaculty(Faculty faculty);
 
 	public void updateFaculty(Faculty faculty);

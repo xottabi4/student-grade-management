@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.FacultyDao;
 import com.sgm.spring.model.Faculty;
+import com.sgm.spring.model.User;
 
 @Repository
 public class FacultyDaoImpl implements FacultyDao {
@@ -25,6 +26,14 @@ public class FacultyDaoImpl implements FacultyDao {
 	public Faculty getFaculty(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Faculty getFaculty(String title) {
+		String sql = "from Faculty f where f.title = :title";
+		Query query = getCurrentSession().createQuery(sql).setParameter("title", title);
+		List<Faculty> faluctys = query.list();
+		return faluctys.get(0);
 	}
 
 	@Override
@@ -53,6 +62,7 @@ public class FacultyDaoImpl implements FacultyDao {
 		List<Faculty> faculty = query.list();
 		return faculty;
 	}
+
 	
 
 }
