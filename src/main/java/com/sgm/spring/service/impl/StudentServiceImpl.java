@@ -31,7 +31,8 @@ public class StudentServiceImpl implements StudentService {
 	public List<Grade> getGrades(String userName) {
 		User user = userDao.getUser(userName);
 		Long id =user.getId();
-		return gradeDao.getGrades(id);
+//		return gradeDao.getGrades(id);
+		return null;
 	}
 
 	@Override

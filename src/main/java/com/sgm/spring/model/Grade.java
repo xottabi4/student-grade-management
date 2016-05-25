@@ -6,11 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "grade")
-public class Grade implements Serializable{
+public class Grade implements Serializable {
 
 	/**
 	 * 
@@ -33,25 +35,20 @@ public class Grade implements Serializable{
 	@Column(name = "Description")
 	private String description;
 
-	@Column(name = "Student_ID")
-	private Long studentID;
+	@ManyToOne
+	@JoinColumn(name = "Student_ID")
+	private User student;
 
-	@Column(name = "Task_ID")
-	private Long subjectID;
+	@ManyToOne
+	@JoinColumn(name = "Task_ID")
+	private Task task;
 
-	@Column(name = "Group_ID")
-	private Long facultyID;
+	@ManyToOne
+	@JoinColumn(name = "Group_ID")
+	private StudentGroup studentGroup;
 
 	public Long getId() {
 		return id;
-	}
-
-	public Long getStudentID() {
-		return studentID;
-	}
-
-	public void setStudentID(Long studentID) {
-		this.studentID = studentID;
 	}
 
 	public void setId(Long id) {
@@ -90,20 +87,28 @@ public class Grade implements Serializable{
 		this.description = description;
 	}
 
-	public Long getSubjectID() {
-		return subjectID;
+	public User getStudent() {
+		return student;
 	}
 
-	public void setSubjectID(Long subjectID) {
-		this.subjectID = subjectID;
+	public void setStudent(User student) {
+		this.student = student;
 	}
 
-	public Long getFacultyID() {
-		return facultyID;
+	public Task getTask() {
+		return task;
 	}
 
-	public void setFacultyID(Long facultyID) {
-		this.facultyID = facultyID;
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
+	public StudentGroup getStudentGroup() {
+		return studentGroup;
+	}
+
+	public void setStudentGroup(StudentGroup studentGroup) {
+		this.studentGroup = studentGroup;
 	}
 
 }

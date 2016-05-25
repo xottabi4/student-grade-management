@@ -5,18 +5,30 @@ INSERT INTO user(username,password,active,name,surname)
 VALUES ('mkyong','123456', true,'a','a');
 INSERT INTO user(username,password,active,name,surname)
 VALUES ('alex','123456', true,'a','a');
+delete from user where ID = 13;
+ALTER TABLE user AUTO_INCREMENT=3;
+INSERT INTO user(username,password,active,name,surname)
+VALUES ('asd','123456', true,'a','a');
 select * from user;
 delete from user where ID>2;
 insert into user_type(user_id,Type_name)
 Values ((SELECT ID from user WHERE username='mkyong'),'professor');
 insert into user_type(user_id,Type_name)
+
 Values ((SELECT id from user WHERE username='alex'),'student');
 select * from user_type;
 
+insert into user_type(user_id,Type_name)
+Values ((SELECT ID from user WHERE username='asd'),'student');
+
+ALTER TABLE grade AUTO_INCREMENT=1;
 
 INSERT INTO grade(Title,Grade,Date,Description,Student_ID,Task_ID,Group_ID)
 VALUES ('Title',10, 'Date','Description',2,1,1);
+INSERT INTO grade(Title,Grade,Date,Description,Student_ID,Task_ID,Group_ID)
+VALUES ('Title',9, 'Date','Description',3,1,1);
 
+delete from grade where ID=2;
 
 INSERT INTO faculty(Title)
 VALUES ('IT'),('EPF'),('Tulki');
@@ -46,8 +58,10 @@ select * from student_group;
 select * from university_subject;
 select * from task;
 select * from user;
-
+select * from grade;
+select * from user_type;
 DELETE FROM task
+
 WHERE ID >0;
 ALTER TABLE task AUTO_INCREMENT=1;
 

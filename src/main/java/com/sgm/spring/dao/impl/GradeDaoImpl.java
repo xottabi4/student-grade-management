@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.sgm.spring.dao.GradeDao;
 import com.sgm.spring.model.Grade;
+import com.sgm.spring.model.User;
 
 @Component
 public class GradeDaoImpl implements GradeDao {
@@ -23,27 +24,47 @@ public class GradeDaoImpl implements GradeDao {
 
 	@Override
 	public void addGrade(Grade grade) {
-		// TODO Auto-generated method stub
-
+		getCurrentSession().save(grade);
 	}
 
 	@Override
-	public List<Grade> getGrades(Long userID) {
-		String sql = "from Grade g where g.studentID = :userID";
-		Query query = getCurrentSession().createQuery(sql).setParameter("userID", userID);
-		return query.list();
+	public Grade getGrade(Long id) {
+		Grade grade = (Grade) getCurrentSession().get(Grade.class, id);
+		return grade;
 	}
 
 	@Override
 	public void updateGrade(Grade grade) {
-		// TODO Auto-generated method stub
+		Grade gradeToUpdate = getGrade(grade.getId());
+		gradeToUpdate.setDate(grade.getDate());
+		gradeToUpdate.setDescription(grade.getDescription());
+		gradeToUpdate.setGrade(grade.getGrade());
+		gradeToUpdate.setStudent(grade.getStudent());
+		gradeToUpdate.setStudentGroup(grade.getStudentGroup());
+		gradeToUpdate.setTask(grade.getTask());
+		gradeToUpdate.setTitle(grade.getTitle());
+		getCurrentSession().update(gradeToUpdate);
 
 	}
 
 	@Override
 	public void deleteGrade(Long id) {
-		// TODO Auto-generated method stub
+		Grade grade = getGrade(id);
+		getCurrentSession().delete(grade);
 
+	}
+
+	@Override
+	public List<Grade> getGrades(Long groupID, String taskTitle) {
+		String sql = "select g from Grade g "
+				+ "inner join g.studentGroup as s "
+				+ "inner join g.task as t "
+				+ "where s.id = :groupID and "
+				+ "t.title = :taskTitle ";
+		Query query = getCurrentSession().createQuery(sql)
+				.setParameter("groupID", groupID)
+				.setParameter("taskTitle", taskTitle);
+		return query.list();
 	}
 
 }

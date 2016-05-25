@@ -12,7 +12,9 @@ import com.sgm.spring.dao.TaskDao;
 import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.dao.UserDao;
 import com.sgm.spring.model.Faculty;
+import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
+import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
 import com.sgm.spring.service.ProfessorService;
 
@@ -55,5 +57,17 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return studentGroupDao.getGroups(facultyTitle.trim(), courseID,
 				subjectTitle.trim());
 	}
+
+	@Override
+	public List<Grade> getGrades(int groupID, String taskTitle ) {
+		Long groupIDLong= new Long(groupID);
+		return gradeDao.getGrades(groupIDLong, taskTitle);
+	}
+
+	@Override
+	public List<Task> getTasks() {
+		return taskDao.getTasks();
+	}
+	
 
 }

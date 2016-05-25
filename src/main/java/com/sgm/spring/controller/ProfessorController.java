@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.sgm.spring.model.Faculty;
+import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
+import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
 import com.sgm.spring.service.ProfessorService;
 
@@ -55,7 +57,22 @@ public class ProfessorController {
 		return "professor/professorViewGroups";
 	}
 
-	// TODO PROFESSOR CREATE GROUP
+	// get tasks controller with post
+	@RequestMapping(value = "/professor/createGroup/viewTasks", method = RequestMethod.POST)
+	public String getViewTasks(Model model) {
+		List<Task> tasks = professorService.getTasks();
+		model.addAttribute("tasks", tasks);
+		return "professor/professorViewTasks";
+	}
+
+	// get grades controller with post
+	@RequestMapping(value = "/professor/createGroup/viewGrades", method = RequestMethod.POST)
+	public String getViewGrades(@RequestParam(value = "selectedGroup") int selectedGroupID,
+			@RequestParam(value = "selectedTask") String selectedTaskTitle, Model model) {
+		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskTitle);
+		model.addAttribute("grades", grades);
+		return "professor/professorViewGrades";
+	}
 
 	// get students from selected group controller with post
 	@RequestMapping(value = "/professor/createGroup/viewStudents", method = RequestMethod.POST)
@@ -73,6 +90,8 @@ public class ProfessorController {
 
 	@RequestMapping(value = "/professor/addGrades", method = RequestMethod.GET)
 	public String getAddGrades(Model model) {
+		List<Faculty> facultys = professorService.getFacultys();
+		model.addAttribute("facultys", facultys);
 		return "professor/professorAddGrades";
 	}
 }
