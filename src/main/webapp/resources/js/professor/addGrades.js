@@ -4,6 +4,9 @@ $(document).ready(
 			var selectedFacultyTitle;
 			var selectedCourseTitle;
 			var selectedSubjectTitle;
+			var selectedTaskTitle;
+			var selectedGroupTitle;
+			var className;
 
 			$("#faculty-selection>li").on('click', function(e) {
 				e.preventDefault();
@@ -20,7 +23,7 @@ $(document).ready(
 			});
 			$("#course-chooser").on('click', 'li', function(e) {
 				$("#subject-chooser").empty();
-				$("#group-chooser").empty();
+				$("#task-chooser").empty();
 				e.preventDefault();
 				var $this = $(this);
 				selectedCourseTitle = $this.text();
@@ -35,16 +38,34 @@ $(document).ready(
 				return false;
 			});
 			$("#subject-chooser").on('click', 'li', function(e) {
+				$("#task-chooser").empty();
 				e.preventDefault();
 				var $this = $(this);
 				$(".subject-selection").parents('li,ul').removeClass('active');
 				$this.addClass('active');
 				selectedSubjectTitle = $this.text();
-				var url = "/professor/createGroup/viewGrades";
+				var url = "/professor/createGroup/viewTasks";
 				$.post(url, {
 					selectedFaculty : selectedFacultyTitle,
 					selectedSubject : selectedSubjectTitle,
 					selectedCourse : selectedCourseTitle
+				}, function(result) {
+					$("#task-chooser").html(result);
+				});
+				return false;
+			});
+//			
+			$("#task-chooser").on('click', 'li', function(e) {
+				e.preventDefault();
+				var $this = $(this);
+				$(".task-selection").parents('li,ul').removeClass('active');
+				$this.addClass('active');
+				selectedTaskTitle = $this.text();
+				var url = "/professor/createGroup/viewGroups";
+				$.post(url, {
+					selectedFaculty : selectedFacultyTitle,
+					selectedSubject : selectedSubjectTitle,
+					selectedCourse : selectedCourseTitle,
 				}, function(result) {
 					$("#group-chooser").html(result);
 				});
@@ -52,29 +73,25 @@ $(document).ready(
 			});
 
 			$("#group-chooser").on('click', function(e) {
-				e.preventDefault();
+//				e.preventDefault();
 				var $this = $(this);
 				$(".group-selection").parents('li,ul').removeClass('active');
 				$this.addClass('active');
-				var url = "/professor/createGroup/viewTasks";
-				$.post(url, function(result) {
-					$("#task-chooser").html(result);
-				});
+				selectedGroupTitle = $this.text();
+				classname= $('.group-selection').attr('class');
+//				var url = "/professor/createGroup/viewGrades";
+//					 $.post(url,{
+						//I need to return current tasks and groups ID
+//						}, 
+//				function(result) {
+//				 $("#student-chooser").html(result);
+//				 });
 				return false;
 			});
+			
 
-			$("#task-chooser").on('click', 'li', function(e) {
-				e.preventDefault();
-				var $this = $(this);
-				$(".task-selection").parents('li,ul').removeClass('active');
-				$this.addClass('active');
-				// selectedSubjectTitle = $this.text();
-				// var url = "/professor/createGroup/viewTasks";
-				// $.post(url, function(result) {
-				// $("#group-chooser").html(result);
-				// });
-				return false;
-			});
+//			
+	
 
 			// Funkcija lai editetu tabulu
 			$(function() {

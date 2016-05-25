@@ -65,6 +65,17 @@ public class ProfessorController {
 		return "professor/professorViewTasks";
 	}
 
+//	
+//	// get students from selected group controller with post
+//	@RequestMapping(value = "/professor/createGroup/viewStudents", method = RequestMethod.POST)
+//	public String getViewStudents(@RequestParam(value = "selectedGroup") int selectedGroupID,
+//			Model model) {
+//		List<Grade> grades = professorService.getGrades(groupID, taskTitle);
+//		model.addAttribute("facultys", facultys);
+//		return "professor/professorViewStudents";
+//	}
+//	
+	
 	// get grades controller with post
 	@RequestMapping(value = "/professor/createGroup/viewGrades", method = RequestMethod.POST)
 	public String getViewGrades(@RequestParam(value = "selectedGroup") int selectedGroupID,
@@ -74,13 +85,6 @@ public class ProfessorController {
 		return "professor/professorViewGrades";
 	}
 
-	// get students from selected group controller with post
-	@RequestMapping(value = "/professor/createGroup/viewStudents", method = RequestMethod.POST)
-	public String getViewStudents(Model model) {
-		List<Faculty> facultys = professorService.getFacultys();
-		model.addAttribute("facultys", facultys);
-		return "professor/professorCreateGroup";
-	}
 
 	// @RequestMapping(value = "/professor/createGroup", method =
 	// RequestMethod.POST)

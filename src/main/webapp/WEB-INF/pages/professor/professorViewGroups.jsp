@@ -3,7 +3,7 @@
 <ul class="nav nav-pills">
 	<c:forEach items="${groups}" var="group">
 		<li>
-			<a id="group-selection ${group.id}" href="#">${group.title}</a>
+			<a id="${group.title}" class="group-selection" href="#">${group.title}</a>
 		</li>
 	</c:forEach>
 </ul>

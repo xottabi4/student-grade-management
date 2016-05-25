@@ -56,7 +56,7 @@ $(document).ready(function() {
         var $this = $(this);
         $(".group-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
-        var url = "/professor/createGroup/viewStudents";
+        //var url = "/professor/createGroup/viewStudents";
         //		$.post(url, {
         //			selectedFaculty : selectedFacultyTitle
         //			selectedSubject : selectedSubjectTitle

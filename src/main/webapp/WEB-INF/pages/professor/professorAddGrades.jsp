@@ -45,15 +45,15 @@
 				<div id="course-chooser"></div>
 
 				<div id="subject-chooser"></div>
+				
+				<div id="task-chooser"></div>
 
 				<div id="group-chooser"></div>
 
-<div id="task-chooser"></div>
-
-				<hr>
 				<div id="student-chooser"></div>
 
 				<hr>
+				
 				<table
 					class="editableTable table-responsive table-striped table-bordered table-hover table-condensed">
 					<thead>
@@ -107,7 +107,7 @@
 					</tbody>
 				</table>
 			</div>
-		<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
+			<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/pages/footer.jsp" />
