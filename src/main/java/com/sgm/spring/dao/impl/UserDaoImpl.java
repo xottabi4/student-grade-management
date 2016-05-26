@@ -32,6 +32,7 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User getUser(String username) {
 		String sql = "from User u where u.username = :username";

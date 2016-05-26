@@ -21,6 +21,7 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UniveristySubject> getSubjects() {
 		String sql = "from UniveristySubject";
@@ -29,6 +30,7 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 		return subjects;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UniveristySubject> getSubjects(Long facultyID) {
 		String sql = "from UniveristySubject u where u.faculty = :faculty";
@@ -36,6 +38,7 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 		List<UniveristySubject> subjects = query.list();
 		return subjects;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
 		String sql = "select u from UniveristySubject u "

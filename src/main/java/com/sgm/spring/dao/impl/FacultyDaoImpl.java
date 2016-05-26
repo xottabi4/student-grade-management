@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.FacultyDao;
 import com.sgm.spring.model.Faculty;
-import com.sgm.spring.model.User;
 
 @Repository
 public class FacultyDaoImpl implements FacultyDao {
@@ -28,6 +27,7 @@ public class FacultyDaoImpl implements FacultyDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Faculty getFaculty(String title) {
 		String sql = "from Faculty f where f.title = :title";
@@ -54,6 +54,7 @@ public class FacultyDaoImpl implements FacultyDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Faculty> getFacultys() {
 //		from User u where u.username

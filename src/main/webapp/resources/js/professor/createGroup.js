@@ -2,9 +2,10 @@ $(document).ready(function() {
     var selectedFacultyTitle;
     var selectedCourseTitle;
     var selectedSubjectTitle;
-
+    $("#group-title-input").hide();
     $("#faculty-selection>li").on('click', function(e) {
         e.preventDefault();
+        $("#group-title-input").hide();
         $("#course-chooser").empty();
         $("#subject-chooser").empty();
         $("#group-chooser").empty();
@@ -18,6 +19,7 @@ $(document).ready(function() {
     });
     $("#course-chooser").on('click', 'li', function(e) {
         $("#subject-chooser").empty();
+        $("#group-title-input").hide();
         $("#group-chooser").empty();
         e.preventDefault();
         var $this = $(this);
@@ -38,34 +40,89 @@ $(document).ready(function() {
         $(".subject-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
         selectedSubjectTitle = $this.text();
-        var url = "/professor/createGroup/viewGroups";
-        $.post(url, {
-            selectedFaculty: selectedFacultyTitle,
-            selectedSubject: selectedSubjectTitle,
-            selectedCourse: selectedCourseTitle
-        }, function(result) {
-            $("#group-chooser").html(result);
-        });
+        $("#group-title-input").show();
+        // var url = "/professor/createGroup/viewGroups";
+        // $.post(url, {
+        //     selectedFaculty: selectedFacultyTitle,
+        //     selectedSubject: selectedSubjectTitle,
+        //     selectedCourse: selectedCourseTitle
+        // }, function(result) {
+        //     $("#group-chooser").html(result);
+        // });
         return false;
     });
     //TODO Make field for group title, make table with id(matrikula), name ,surname
     //  that you can edit+ when its filled add row, add create button after pressing
     // it post method to controller with all inputed data and redirect to home
-    $("#group-chooser").on('click', function(e) {
+    // function to add table row
+
+    //TODO ADD JQ when key enter is pressed table row is created
+    var table = $('#add-students').DataTable();
+
+
+    $("#add-row").on('click', function(e) {
         e.preventDefault();
-        var $this = $(this);
-        $(".group-selection").parents('li,ul').removeClass('active');
-        $this.addClass('active');
-        //var url = "/professor/createGroup/viewStudents";
-        //		$.post(url, {
-        //			selectedFaculty : selectedFacultyTitle
-        //			selectedSubject : selectedSubjectTitle
-        //			selectedCourse : selectedCourseTitle
-        //		}, function(result) {
-        //			$("#student-chooser").html(result);
-        //		});
+        // alert('asd');
+        table.row.add([
+            '<input type="text" class="form-control " value=""/>',
+            '<input type="text" class="form-control " value=""/>',
+            '<input type="text" class="form-control " value=""/>'
+        ]).draw();
+        // var clonedRow = $("table>tbody tr:first").clone();
+        // clonedRow.find('input').val('');
+        // $('table>tbody').append(clonedRow);
         return false;
     });
+
+    $("#submit-data").on('click', function(e) {
+        e.preventDefault();
+        var data = table.$('input').serialize();
+        alert("asd \n"+data.substr( 0, 120 )+'...');
+        return false;
+
+    });
+
+
+    // $(".table-cell>td>input").on('click', function() {
+    //     var $this = $(this);
+    //     // $($this).parents('td,tr').removeClass('table-cell');
+    //     var clonedRow = $("table>tbody tr:first").clone();
+    //
+    //     // $('tbody tr:first').clone();
+    //     clonedRow.find('input').val('');
+    //     // clonedRow.find('tr').attr("class","table-cell");
+    //     // clonedRow.find('tr').addClass("table-cell").insertAfter('.addprop');
+    //     $('table>tbody').append(clonedRow);
+    //     // $('·form-control').eq(0).addClass('table-cell').end();
+    //     $("#add-students tr:last").attr("class", "table-cell");
+    //
+    // });
+
+
+    // function to edit table
+    // $(function() {
+    //     $("td").click(
+    //         function() {
+    //             var OriginalContent = $(this).text();
+    //             $(this).addClass("cellEditing");
+    //             $(this).html(
+    //                 "<input type='text' value='" + OriginalContent + "' />");
+    //             $(this).children().first().focus();
+    //             $(this).children().first().keypress(
+    //                 function(e) {
+    //                     if (e.which == 13) {
+    //                         var newContent = $(this).val();
+    //                         $(this).parent().text(newContent);
+    //                         $(this).parent().removeClass(
+    //                             "cellEditing");
+    //                     }
+    //                 });
+    //             $(this).children().first().blur(function() {
+    //                 $(this).parent().text(OriginalContent);
+    //                 $(this).parent().removeClass("cellEditing");
+    //             });
+    //         });
+    // });
 });
 /*
 

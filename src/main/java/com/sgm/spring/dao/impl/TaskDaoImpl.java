@@ -21,6 +21,7 @@ public class TaskDaoImpl implements TaskDao {
 		return sessionFactory.getCurrentSession();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Task> getTasks() {
 		String sql = "from " + Task.class.getName();

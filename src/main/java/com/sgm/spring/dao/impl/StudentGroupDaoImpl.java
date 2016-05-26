@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.StudentGroupDao;
-import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.model.StudentGroup;
-import com.sgm.spring.model.UniveristySubject;
 
 @Repository
 public class StudentGroupDaoImpl implements StudentGroupDao {
@@ -23,6 +21,7 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle) {
 		String sql = "select g from StudentGroup g "

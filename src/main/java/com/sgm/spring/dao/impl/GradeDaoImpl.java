@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.sgm.spring.dao.GradeDao;
 import com.sgm.spring.model.Grade;
-import com.sgm.spring.model.User;
 
 @Component
 public class GradeDaoImpl implements GradeDao {
@@ -54,6 +53,7 @@ public class GradeDaoImpl implements GradeDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Grade> getGrades(Long groupID, String taskTitle) {
 		String sql = "select g from Grade g "

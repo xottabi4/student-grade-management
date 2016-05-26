@@ -59,6 +59,7 @@ public class MainController {
 		return "error/403Page";
 	}
 
+	@SuppressWarnings("unchecked")
 	private boolean hasRole(String role) {
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext()
 				.getAuthentication().getAuthorities();
