@@ -64,9 +64,9 @@ $(document).ready(function() {
         e.preventDefault();
         // alert('asd');
         table.row.add([
-            '<input type="text" class="form-control " value=""/>',
-            '<input type="text" class="form-control " value=""/>',
-            '<input type="text" class="form-control " value=""/>'
+            '<input type="text" class="form-control " value="" name="text"/>',
+            '<input type="text" class="form-control " value="" name="text"/>',
+            '<input type="text" class="form-control " value="" name="text"/>'
         ]).draw();
         // var clonedRow = $("table>tbody tr:first").clone();
         // clonedRow.find('input').val('');
@@ -76,8 +76,13 @@ $(document).ready(function() {
 
     $("#submit-data").on('click', function(e) {
         e.preventDefault();
-        var data = table.$('input').serialize();
-        alert("asd \n"+data.substr( 0, 120 )+'...');
+        //     var data = table
+        // .rows()
+        // .data();
+        var data = table.$('input');
+        var serialized = JSON.stringify(data);
+
+        alert("table has \n" + serialized);
         return false;
 
     });

@@ -63,9 +63,9 @@
 																</thead>
 																<tbody>
 																	<tr class="table-cell">
-																		<td><input type="text" class="form-control " value=""/></td>
-																		<td><input type="text" class="form-control " value=""/></td>
-																		<td><input type="text" class="form-control " value=""/></td>
+																		<td><input type="text" class="form-control " value="" name="text"/></td>
+																		<td><input type="text" class="form-control " value="" name="text"/></td>
+																		<td><input type="text" class="form-control " value="" name="text"/></td>
 																	</tr>
 																</tbody>
 															</table>
