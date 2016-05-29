@@ -55,15 +55,15 @@ public class GradeDaoImpl implements GradeDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Grade> getGrades(Long groupID, String taskTitle) {
+	public List<Grade> getGrades(Long groupID, Long taskID) {
 		String sql = "select g from Grade g "
 				+ "inner join g.studentGroup as s "
 				+ "inner join g.task as t "
 				+ "where s.id = :groupID and "
-				+ "t.title = :taskTitle ";
+				+ "t.id = :taskID ";
 		Query query = getCurrentSession().createQuery(sql)
 				.setParameter("groupID", groupID)
-				.setParameter("taskTitle", taskTitle);
+				.setParameter("taskID", taskID);
 		return query.list();
 	}
 

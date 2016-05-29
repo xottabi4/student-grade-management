@@ -8,7 +8,7 @@ public interface GradeDao {
 
 	public void addGrade(Grade grade);
 
-	public List<Grade> getGrades(Long groupID, String taskTitle);
+	public List<Grade> getGrades(Long groupID, Long taskID);
 
 	public void updateGrade(Grade grade);
 

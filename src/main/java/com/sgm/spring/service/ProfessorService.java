@@ -18,7 +18,7 @@ public interface ProfessorService {
 
 	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle);
 	
-	public List<Grade> getGrades(int groupID, String taskTitle);
+	public List<Grade> getGrades(int groupID, int taskID);
 	
 	public List<Task> getTasks();
 }

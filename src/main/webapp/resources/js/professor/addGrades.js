@@ -43,50 +43,63 @@ $(document).ready(
             $(".subject-selection").parents('li,ul').removeClass('active');
             $this.addClass('active');
             selectedSubjectTitle = $this.text();
-            var url = "/professor/createGroup/viewTasks";
+            var url = "/professor/createGroup/viewGroups";
             $.post(url, {
                 selectedFaculty: selectedFacultyTitle,
                 selectedSubject: selectedSubjectTitle,
                 selectedCourse: selectedCourseTitle
             }, function(result) {
-                $("#task-chooser").html(result);
+                $("#group-chooser").html(result);
+                $(".group-selection_id").hide();
             });
             return false;
         });
         //
-        $("#task-chooser").on('click', 'li', function(e) {
+        
+        $("#group-chooser").on('click','li', function(e) {
             e.preventDefault();
+            $("#grade-chooser").empty();
             var $this = $(this);
-            $(".task-selection").parents('li,ul').removeClass('active');
-            $this.addClass('active');
-            selectedTaskTitle = $this.text();
-            var url = "/professor/createGroup/viewGroups";
-            $.post(url, {
-                selectedFaculty: selectedFacultyTitle,
-                selectedSubject: selectedSubjectTitle,
-                selectedCourse: selectedCourseTitle,
-            }, function(result) {
-                $("#group-chooser").html(result);
-            });
-            return false;
-        });
-
-        $("#group-chooser").on('click', function(e) {
-            //				e.preventDefault();
-            var $this = $(this);
+            //alert($gID);
+            $(".group-selection_id").hide();
             $(".group-selection").parents('li,ul').removeClass('active');
             $this.addClass('active');
             selectedGroupTitle = $this.text();
             classname = $('.group-selection').attr('class');
-            //				var url = "/professor/createGroup/viewGrades";
-            //					 $.post(url,{
-            //I need to return current tasks and groups ID
-            //						},
-            //				function(result) {
-            //				 $("#student-chooser").html(result);
-            //				 });
+            				var url = "/professor/createGroup/viewTasks";
+            					 $.post(url,
+            				function(result) {
+            				 $("#task-chooser").html(result);
+            					$(".task-selection-id").hide();
+            				 });
             return false;
         });
+        
+        
+        $("#task-chooser").on('click', 'li', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            $(".task-selection-id").hide();
+            $(".task-selection").parents('li,ul').removeClass('active');
+            $this.addClass('active');
+            selectedTaskTitle = $this.text();
+            var url = "/professor/createGroup/viewGrades";
+            $.post(url, 
+            		{
+                selectedTask: selectedTaskTitle.trim(),
+                selectedGroup: selectedGroupTitle.trim()
+            },
+            function(result) {
+                $("#grade-chooser").html(result);
+                //This table is searching after name column
+                var table = $('#view-student-grades').DataTable();
+            }
+            );
+            return false;
+        });
+
+        
+       
 
         // Funkcija lai editetu tabulu
         $(function() {

@@ -59,9 +59,10 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
-	public List<Grade> getGrades(int groupID, String taskTitle ) {
+	public List<Grade> getGrades(int groupID, int taskID ) {
 		Long groupIDLong= new Long(groupID);
-		return gradeDao.getGrades(groupIDLong, taskTitle);
+		Long taskIDLong= new Long(taskID);
+		return gradeDao.getGrades(groupIDLong, taskIDLong);
 	}
 
 	@Override

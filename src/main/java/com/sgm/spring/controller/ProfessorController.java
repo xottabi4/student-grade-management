@@ -52,7 +52,7 @@ public class ProfessorController {
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
 	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students) throws ParseException, IOException {
 		try {
-			System.out.println(students.getGroupTitle());			
+			System.out.println(students.getGroupTitle());
 			System.out.println(students.getFacultyTitle());
 			System.out.println(students.getSubjectTitle());
 			System.out.println(students.getCourseTitle());
@@ -115,9 +115,29 @@ public class ProfessorController {
 
 	// get grades controller with post
 	@RequestMapping(value = "/professor/createGroup/viewGrades", method = RequestMethod.POST)
-	public String getViewGrades(@RequestParam(value = "selectedGroup") int selectedGroupID,
-			@RequestParam(value = "selectedTask") String selectedTaskTitle, Model model) {
-		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskTitle);
+	public String getViewGrades(@RequestParam(value = "selectedGroup") String selectedGroup,
+			@RequestParam(value = "selectedTask") String selectedTask, Model model) {
+
+		String group = "";
+		int i = 0;
+		while (selectedGroup.charAt(i) != ' ') {
+			group += selectedGroup.charAt(i);
+			i++;
+		}
+		group.trim();
+		String task = "";
+
+		int j = 0;
+		while (selectedTask.charAt(j) != ' ') {
+			task += selectedTask.charAt(j);
+			j++;
+		}
+		task.trim();
+
+		int groupID = Integer.parseInt(group);
+		int taskID = Integer.parseInt(task);
+
+		List<Grade> grades = professorService.getGrades(groupID, taskID);
 		model.addAttribute("grades", grades);
 		return "professor/professorViewGrades";
 	}

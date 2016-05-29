@@ -41,14 +41,14 @@
 
 													<div id="subject-chooser"></div>
 
+													<div id="group-chooser"></div>
+													
 													<div id="task-chooser"></div>
 
-													<div id="group-chooser"></div>
-
-													<div id="student-chooser"></div>
+													<div id="grade-chooser"></div>
 
 													<hr>
-
+<!-- 
 														<table class="editableTable table-responsive table-striped table-bordered table-hover table-condensed">
 															<thead>
 																<tr>
@@ -99,7 +99,7 @@
 																	<td></td>
 																</tr>
 															</tbody>
-														</table>
+														</table>-->
 													</div>
 													<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 												</div>
