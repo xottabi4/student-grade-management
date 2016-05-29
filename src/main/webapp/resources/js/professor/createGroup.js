@@ -8,7 +8,7 @@ $(document).ready(function() {
         $("#course-chooser").empty();
         $("#subject-chooser").empty();
         var $this = $(this);
-        selectedFacultyTitle = $this.text();
+        selectedFacultyTitle = $this.text().trim();
         $(".faculty-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
         var url = "/professor/createGroup/viewCourses";
@@ -19,7 +19,7 @@ $(document).ready(function() {
         e.preventDefault();
         $("#subject-chooser").empty();
         var $this = $(this);
-        selectedCourseTitle = $this.text();
+        selectedCourseTitle = $this.text().trim();
         $(".course-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
         var url = "/professor/createGroup/viewSubjects";
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var $this = $(this);
         $(".subject-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
-        selectedSubjectTitle = $this.text();
+        selectedSubjectTitle = $this.text().trim();
         return false;
     });
     //TODO Make field for group title, make table with id(matrikula), name ,surname
@@ -72,13 +72,13 @@ $(document).ready(function() {
                 data_array.push(item);
             }
         });
-        var groupTitle = $('#group-title-input>input').val();
+        var groupTitle = $('#group-title-input>input').val().trim();
         var serialized = JSON.stringify({
             students: data_array,
-            groupTitle: groupTitle.trim(),
-            facultyTitle: selectedFacultyTitle.trim(),
-            courseTitle: parseInt(selectedCourseTitle.trim()),
-            subjectTitle: selectedSubjectTitle.trim()
+            groupTitle: groupTitle,
+            facultyTitle: selectedFacultyTitle,
+            courseTitle: parseInt(selectedCourseTitle),
+            subjectTitle: selectedSubjectTitle
         });
 
         alert("table has \n" + serialized);

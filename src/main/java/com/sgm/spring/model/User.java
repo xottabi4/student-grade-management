@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "user")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 	/**
 	 * 
@@ -19,6 +23,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID", length = 11)
+	@JsonProperty("matrikula")
 	private Long id;
 
 	@Column(name = "Name")

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.sgm.spring.json.model.StudentGroupJSON;
-import com.sgm.spring.json.model.StudentJSON;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
+import com.sgm.spring.model.User;
+import com.sgm.spring.model.json.StudentGroupJSON;
 import com.sgm.spring.service.ProfessorService;
 
 @Controller("/professor")
@@ -56,9 +56,9 @@ public class ProfessorController {
 			System.out.println(students.getFacultyTitle());
 			System.out.println(students.getSubjectTitle());
 			System.out.println(students.getCourseTitle());
-			List<StudentJSON> studentsList = students.getStudents();
+			List<User> studentsList = students.getStudents();
 			System.out.println(studentsList.size());
-			for (StudentJSON studentJSON : studentsList) {
+			for (User studentJSON : studentsList) {
 				System.out.println(studentJSON.getName());
 			}
 			return "Successfully added persons";
