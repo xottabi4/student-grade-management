@@ -63,15 +63,18 @@
 																</thead>
 																<tbody>
 																	<tr class="table-cell">
-																		<td><input type="text" class="form-control " value="" name="text"/></td>
-																		<td><input type="text" class="form-control " value="" name="text"/></td>
-																		<td><input type="text" class="form-control " value="" name="text"/></td>
+																		<td><input type="text" class="form-control matrikula" value="" name="text"/></td>
+																		<td><input type="text" class="form-control name" value="" name="text"/></td>
+																		<td><input type="text" class="form-control surname" value="" name="text"/></td>
 																	</tr>
 																</tbody>
 															</table>
 															<div class="col-sm-6 center-block">
 																<a href="#" id="submit-data" class="btn btn-primary btn-lg pull-right " role="button">Submit</a>
 															</div>
+															<p id="test">
+
+															</p>
 														</div>
 														<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 													</div>

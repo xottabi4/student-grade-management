@@ -2,13 +2,11 @@ $(document).ready(function() {
     var selectedFacultyTitle;
     var selectedCourseTitle;
     var selectedSubjectTitle;
-    $("#group-title-input").hide();
+
     $("#faculty-selection>li").on('click', function(e) {
         e.preventDefault();
-        $("#group-title-input").hide();
         $("#course-chooser").empty();
         $("#subject-chooser").empty();
-        $("#group-chooser").empty();
         var $this = $(this);
         selectedFacultyTitle = $this.text();
         $(".faculty-selection").parents('li,ul').removeClass('active');
@@ -18,10 +16,8 @@ $(document).ready(function() {
         return false;
     });
     $("#course-chooser").on('click', 'li', function(e) {
-        $("#subject-chooser").empty();
-        $("#group-title-input").hide();
-        $("#group-chooser").empty();
         e.preventDefault();
+        $("#subject-chooser").empty();
         var $this = $(this);
         selectedCourseTitle = $this.text();
         $(".course-selection").parents('li,ul').removeClass('active');
@@ -40,15 +36,6 @@ $(document).ready(function() {
         $(".subject-selection").parents('li,ul').removeClass('active');
         $this.addClass('active');
         selectedSubjectTitle = $this.text();
-        $("#group-title-input").show();
-        // var url = "/professor/createGroup/viewGroups";
-        // $.post(url, {
-        //     selectedFaculty: selectedFacultyTitle,
-        //     selectedSubject: selectedSubjectTitle,
-        //     selectedCourse: selectedCourseTitle
-        // }, function(result) {
-        //     $("#group-chooser").html(result);
-        // });
         return false;
     });
     //TODO Make field for group title, make table with id(matrikula), name ,surname
@@ -59,32 +46,56 @@ $(document).ready(function() {
     //TODO ADD JQ when key enter is pressed table row is created
     var table = $('#add-students').DataTable();
 
-
     $("#add-row").on('click', function(e) {
         e.preventDefault();
-        // alert('asd');
         table.row.add([
-            '<input type="text" class="form-control " value="" name="text"/>',
-            '<input type="text" class="form-control " value="" name="text"/>',
-            '<input type="text" class="form-control " value="" name="text"/>'
+            '<td><input type="text" class="form-control matrikula" value="" name="text"/></td>',
+            '<td><input type="text" class="form-control name" value="" name="text"/></td>',
+            '<td><input type="text" class="form-control surname" value="" name="text"/></td>'
         ]).draw();
-        // var clonedRow = $("table>tbody tr:first").clone();
-        // clonedRow.find('input').val('');
-        // $('table>tbody').append(clonedRow);
         return false;
     });
 
     $("#submit-data").on('click', function(e) {
         e.preventDefault();
-        //     var data = table
-        // .rows()
-        // .data();
         var data = table.$('input');
-        var serialized = JSON.stringify(data);
+        var data_array = [];
+        var item = {};
+        $.each(data, function(index, element) {
+            if ($(this).hasClass('matrikula')) {
+                item = {};
+                item['matrikula'] = $(this).val();
+            } else if ($(this).hasClass('name')) {
+                item['name'] = $(this).val();
+            } else if ($(this).hasClass('surname')) {
+                item['surname'] = $(this).val();
+                data_array.push(item);
+            }
+        });
+        var groupTitle = $('#group-title-input>input').val();
+        var serialized = JSON.stringify({
+            students: data_array,
+            groupTitle: groupTitle.trim(),
+            facultyTitle: selectedFacultyTitle.trim(),
+            courseTitle: parseInt(selectedCourseTitle.trim()),
+            subjectTitle: selectedSubjectTitle.trim()
+        });
 
         alert("table has \n" + serialized);
-        return false;
+        $.ajax({
+            url: "/professor/createGroup",
+            type: 'POST',
+            data: serialized,
+            dataType: "html",
+            contentType: 'application/json',
+            mimeType: 'application/json',
+            success: function(data) {
+                alert("succes\n " + data);
 
+                return false;
+            }
+        });
+        return false;
     });
 
 

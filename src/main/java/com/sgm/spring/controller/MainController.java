@@ -15,7 +15,6 @@ public class MainController {
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
 	public String loginPage(Model model) {
-
 		if (hasRole("student")) {
 			return "redirect:/student";
 		} else if (hasRole("professor")) {
@@ -49,7 +48,6 @@ public class MainController {
 
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model, Principal principal) {
-
 		if (principal != null) {
 			model.addAttribute("message",
 					"Hi " + principal.getName() + "<br> You do not have permission to access this page!");
