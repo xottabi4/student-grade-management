@@ -104,6 +104,28 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`student_group` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+-- -----------------------------------------------------
+-- Table `student_grade_management`.`all_groups`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `student_grade_management`.`all_groups` (
+  `ID` INT(11) NOT NULL,
+  `Student_ID` INT(11) NOT NULL,
+  `Student_group_ID` INT(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `fk_all_groups_1_idx` (`Student_ID` ASC),
+  INDEX `fk_all_groups_2_idx` (`Student_group_ID` ASC),
+  CONSTRAINT `fk_all_groups_1`
+    FOREIGN KEY (`Student_ID`)
+    REFERENCES `student_grade_management`.`user` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_all_groups_2`
+    FOREIGN KEY (`Student_group_ID`)
+    REFERENCES `student_grade_management`.`student_group` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `student_grade_management`.`grade`

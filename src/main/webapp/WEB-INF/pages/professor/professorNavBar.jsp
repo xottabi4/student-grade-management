@@ -11,11 +11,9 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="menu nav navbar-nav">
 				<li><a href="/professor">Home</a></li>
+				<li><a href="/professor/viewGrades">View grades</a></li>
 				<li><a href="/professor/addGrades">Add grades</a></li>
 				<li><a href="/professor/createGroup">Create Group</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Projects</a></li>
-				<li><a href="#">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/logout"><span

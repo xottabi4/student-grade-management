@@ -16,6 +16,7 @@ import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
+import com.sgm.spring.model.User;
 import com.sgm.spring.service.ProfessorService;
 
 @Service
@@ -59,15 +60,26 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
-	public List<Grade> getGrades(int groupID, int taskID ) {
-		Long groupIDLong= new Long(groupID);
-		Long taskIDLong= new Long(taskID);
-		return gradeDao.getGrades(groupIDLong, taskIDLong);
+	public List<Grade> getGrades(Long groupID, Long taskID ) {
+		return gradeDao.getGrades(groupID, taskID);
 	}
 
 	@Override
 	public List<Task> getTasks() {
 		return taskDao.getTasks();
+	}
+
+	@Override
+	public void addStudentGroup(String groupTitle, String facultyTitle, String subjectTitle, Long courseTitle,
+			Long professorID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addStudentsToGroup(List<User> students, Long groupID) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

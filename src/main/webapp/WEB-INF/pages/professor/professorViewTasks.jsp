@@ -2,9 +2,8 @@
 <p>choose task</p>
 <ul class="nav nav-pills">
 	<c:forEach items="${tasks}" var="task">
-		<li>
-			<a class="task-selection-id" href="#">${task.id} </a>
-			<a class="task-selection" href="#"> ${task.title}</a>
+		<li id="${task.id}">
+			<a class="task-selection" href="#">${task.title}</a>
 		</li>
 	</c:forEach>
 </ul>

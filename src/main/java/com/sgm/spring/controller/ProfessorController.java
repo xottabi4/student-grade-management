@@ -100,53 +100,19 @@ public class ProfessorController {
 		return "professor/professorViewTasks";
 	}
 
-	//
-	// // get students from selected group controller with post
-	// @RequestMapping(value = "/professor/createGroup/viewStudents", method =
-	// RequestMethod.POST)
-	// public String getViewStudents(@RequestParam(value = "selectedGroup") int
-	// selectedGroupID,
-	// Model model) {
-	// List<Grade> grades = professorService.getGrades(groupID, taskTitle);
-	// model.addAttribute("facultys", facultys);
-	// return "professor/professorViewStudents";
-	// }
-	//
-
-	// get grades controller with post
-	@RequestMapping(value = "/professor/createGroup/viewGrades", method = RequestMethod.POST)
-	public String getViewGrades(@RequestParam(value = "selectedGroup") String selectedGroup,
-			@RequestParam(value = "selectedTask") String selectedTask, Model model) {
-
-		String group = "";
-		int i = 0;
-		while (selectedGroup.charAt(i) != ' ') {
-			group += selectedGroup.charAt(i);
-			i++;
-		}
-		group.trim();
-		String task = "";
-
-		int j = 0;
-		while (selectedTask.charAt(j) != ' ') {
-			task += selectedTask.charAt(j);
-			j++;
-		}
-		task.trim();
-
-		int groupID = Integer.parseInt(group);
-		int taskID = Integer.parseInt(task);
-
-		List<Grade> grades = professorService.getGrades(groupID, taskID);
-		model.addAttribute("grades", grades);
-		return "professor/professorViewGrades";
+	@RequestMapping(value = "/professor/viewGrades/getGrades", method = RequestMethod.GET)
+	public @ResponseBody List<Grade> getGrades(@RequestParam(value = "selectedGroupID") Long selectedGroupID,
+			@RequestParam(value = "selectedTaskID") Long selectedTaskID) {
+		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskID);
+		return grades;
 	}
 
-	// @RequestMapping(value = "/professor/createGroup", method =
-	// RequestMethod.POST)
-	// public String postCreateGroup(RedirectAttributes redirectAttributes) {
-	// return "redirect:/professor/createGroup";
-	// }
+	@RequestMapping(value = "/professor/viewGrades", method = RequestMethod.GET)
+	public String getViewGrades(Model model) {
+		List<Faculty> facultys = professorService.getFacultys();
+		model.addAttribute("facultys", facultys);
+		return "professor/professorViewGrades";
+	}
 
 	@RequestMapping(value = "/professor/addGrades", method = RequestMethod.GET)
 	public String getAddGrades(Model model) {
