@@ -18,7 +18,7 @@
 										<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 										<script src="<c:url value=" /resources/js/mainPageScrips.js" />"></script>
 										<script src="<c:url value=" /resources/js/professor/addGrades.js" />"></script>
-										<script type="text/javascript" src="script.js"></script>
+										<%-- <script type="text/javascript" src="script.js"></script> --%>
 									</head>
 
 									<body>
@@ -28,7 +28,8 @@
 												<jsp:include page="/WEB-INF/pages/leftPane.jsp"/>
 												<div class="col-sm-8 text-left">
 													<h1>Welcome</h1>
-													<p>choose faculty</p>
+													<hr>
+													<h4 class="bg-info" style ="color:#336666;">Choose faculty</h4>
 													<ul id="faculty-selection" class="nav nav-pills">
 														<c:forEach items="${facultys}" var="faculty">
 															<li>
@@ -42,64 +43,28 @@
 													<div id="subject-chooser"></div>
 
 													<div id="group-chooser"></div>
-													
+
 													<div id="task-chooser"></div>
 
-													<div id="grade-chooser"></div>
-
 													<hr>
-<!-- 
-														<table class="editableTable table-responsive table-striped table-bordered table-hover table-condensed">
+													<hr>
+														<table id="set-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>
 																<tr>
-																	<th>#</th>
-																	<th>Firstname</th>
-																	<th>Lastname</th>
-																	<th>Age</th>
-																	<th>City</th>
-																	<th>Country</th>
-																	<th>Grades</th>
+
+																	<th>Name</th>
+																	<th>Surname</th>
+																	<th>Description</th>
+																	<th>Grade</th>
+
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
-																	<td>1</td>
-																	<td>Anna</td>
-																	<td>Pitt</td>
-																	<td>35</td>
-																	<td>New York</td>
-																	<td>USA</td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>Anna</td>
-																	<td>Pitt</td>
-																	<td>35</td>
-																	<td>New York</td>
-																	<td>USA</td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<td>1</td>
-																	<td>Anna</td>
-																	<td>Pitt</td>
-																	<td>35</td>
-																	<td>New York</td>
-																	<td>USA</td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																</tr>
+										
+																
 															</tbody>
-														</table>-->
+														</table>
+
 													</div>
 													<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 												</div>
@@ -107,3 +72,4 @@
 											<jsp:include page="/WEB-INF/pages/footer.jsp"/>
 										</body>
 									</html>
+

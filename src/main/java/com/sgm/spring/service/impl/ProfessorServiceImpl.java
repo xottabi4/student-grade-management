@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sgm.spring.dao.AllGroupDao;
 import com.sgm.spring.dao.FacultyDao;
 import com.sgm.spring.dao.GradeDao;
 import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.dao.TaskDao;
 import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.dao.UserDao;
+import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
@@ -34,6 +36,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 	FacultyDao facultyDao;
 	@Autowired
 	StudentGroupDao studentGroupDao;
+	@Autowired
+	AllGroupDao selectedGroupDao;
 
 	@Override
 	public List<Faculty> getFacultys() {
@@ -81,6 +85,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public List<AllGroups> getSelectedGroup(Long selectedGroupID) {
+	return selectedGroupDao.getSelectedGroup(selectedGroupID);
+	}
+
 
 }

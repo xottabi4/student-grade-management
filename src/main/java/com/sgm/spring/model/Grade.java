@@ -24,6 +24,7 @@ public class Grade implements Serializable {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "Title")

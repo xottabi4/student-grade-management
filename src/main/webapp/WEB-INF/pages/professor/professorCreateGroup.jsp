@@ -27,7 +27,8 @@
 												<jsp:include page="/WEB-INF/pages/leftPane.jsp"/>
 												<div class="col-sm-8 text-left">
 													<h1>Welcome</h1>
-													<p>choose faculty</p>
+													<hr>
+												<h4 class="bg-info" style ="color:#336666;">Choose faculty</h4>
 													<ul id="faculty-selection" class="nav nav-pills">
 														<c:forEach items="${facultys}" var="faculty">
 															<li>

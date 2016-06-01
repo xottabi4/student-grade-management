@@ -2,6 +2,7 @@ package com.sgm.spring.service;
 
 import java.util.List;
 
+import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
@@ -20,6 +21,8 @@ public interface ProfessorService {
 	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle);
 
 	public List<Grade> getGrades(Long groupID, Long taskID);
+	
+	public List<AllGroups> getSelectedGroup(Long selectedGroupID);
 
 	public List<Task> getTasks();
 

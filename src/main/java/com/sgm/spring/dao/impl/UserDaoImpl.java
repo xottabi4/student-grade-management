@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.UserDao;
+import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.User;
 
 @Repository
@@ -58,5 +59,6 @@ public class UserDaoImpl implements UserDao {
 		getCurrentSession().delete(user);
 
 	}
+
 
 }
