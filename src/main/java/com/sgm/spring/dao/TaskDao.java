@@ -7,5 +7,6 @@ import com.sgm.spring.model.Task;
 public interface TaskDao {
 
 	public List<Task> getTasks();
-	
+
+	public Task getTask(String taskTitle);
 }

@@ -10,6 +10,10 @@ import com.sgm.spring.model.User;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StudentGroupJSON implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7940678267276677886L;
 	@JsonProperty("students")
 	private List<User> students;
 	private String groupTitle;

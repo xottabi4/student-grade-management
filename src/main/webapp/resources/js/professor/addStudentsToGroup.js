@@ -39,15 +39,44 @@ $(document).ready(function() {
         return false;
     });
 
+    var table = $('#add-students').DataTable();
+
+    $("#add-row").on('click', function(e) {
+        e.preventDefault();
+        table.row.add([
+            '<td><input type="text" class="form-control matrikula" value="" name="text"/></td>',
+            '<td><input type="text" class="form-control name" value="" name="text"/></td>',
+            '<td><input type="text" class="form-control surname" value="" name="text"/></td>'
+        ]).draw();
+        return false;
+    });
+
     $("#submit-data").on('click', function(e) {
         e.preventDefault();
+        var data = table.$('input');
+        var data_array = [];
+        var item = {};
+        $.each(data, function(index, element) {
+            if ($(this).hasClass('matrikula')) {
+                item = {};
+                item['matrikula'] = $(this).val();
+            } else if ($(this).hasClass('name')) {
+                item['name'] = $(this).val();
+            } else if ($(this).hasClass('surname')) {
+                item['surname'] = $(this).val();
+                data_array.push(item);
+            }
+        });
         var groupTitle = $('#group-title-input>input').val().trim();
         var serialized = JSON.stringify({
+            students: data_array,
             groupTitle: groupTitle,
             facultyTitle: selectedFacultyTitle,
             courseTitle: parseInt(selectedCourseTitle),
             subjectTitle: selectedSubjectTitle
         });
+
+        // alert("table has \n" + serialized);
         $.ajax({
             url: "/professor/createGroup",
             type: 'POST',
@@ -57,6 +86,7 @@ $(document).ready(function() {
             mimeType: 'application/json',
             success: function(data) {
                 alert(data);
+
                 return false;
             }
         });

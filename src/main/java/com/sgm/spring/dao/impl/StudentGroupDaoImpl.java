@@ -21,23 +21,27 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
+	public Long addGroup(StudentGroup studentGroup) {
+		getCurrentSession().save(studentGroup);
+		return studentGroup.getId();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle) {
-		String sql = "select g from StudentGroup g "
-				+ "inner join g.faculty as f "
-				+ "inner join g.subject as s "
-				+ "where f.title = :faculty and "
-				+ "s.title = :subject and "
-				+ "g.course = :course";
-		Query query = getCurrentSession().createQuery(sql)
-				.setParameter("faculty", facultyTitle)
-				.setParameter("subject", subjectTitle)
-				.setParameter("course", courseID);
+		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "inner join g.subject as s "
+				+ "where f.title = :faculty and " + "s.title = :subject and " + "g.course = :course";
+		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle)
+				.setParameter("subject", subjectTitle).setParameter("course", courseID);
 		List<StudentGroup> studentGroup = query.list();
 		return studentGroup;
 	}
 
-	
+	@Override
+	public StudentGroup getGroup(Long groupID) {
+		StudentGroup group = (StudentGroup) getCurrentSession().get(StudentGroup.class, groupID);
+		return group;
+	}
 
 }

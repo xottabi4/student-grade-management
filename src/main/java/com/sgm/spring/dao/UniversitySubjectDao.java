@@ -6,6 +6,8 @@ import com.sgm.spring.model.UniveristySubject;
 
 public interface UniversitySubjectDao {
 
+	public UniveristySubject getSubject(String subjectTitle);
+	
 	public List<UniveristySubject> getSubjects();
 
 	public List<UniveristySubject> getSubjects(Long facultyID);

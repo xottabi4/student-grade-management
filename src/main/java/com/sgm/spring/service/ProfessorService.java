@@ -2,6 +2,7 @@ package com.sgm.spring.service;
 
 import java.util.List;
 
+import com.sgm.spring.exceptions.UserDoesntExistException;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
@@ -23,8 +24,8 @@ public interface ProfessorService {
 
 	public List<Task> getTasks();
 
-	public void addStudentGroup(String groupTitle, String facultyTitle, String subjectTitle, Long courseTitle,
-			Long professorID);
+	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException;
 
-	public void addStudentsToGroup(List<User> students, Long groupID);
+	public Long addStudentGroup(String groupTitle, Long course, String professorName, String subjectTitle,
+			String facultyTitle);
 }

@@ -29,11 +29,12 @@ public class ApplicationContextConfig {
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
 	private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
-
+	
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
-
+	private static final String PROPERTY_NAME_ID_NEW_GENERATOR_MAPPINGS = "hibernate.id.new_generator_mappings";
+//	private static final String PROPERTY_NAME_HBM2DDL_AUTO ="hibernate.hbm2ddl.auto";
 	@Resource
 	private Environment env;
 
@@ -60,6 +61,10 @@ public class ApplicationContextConfig {
 		Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		properties.put(PROPERTY_NAME_ID_NEW_GENERATOR_MAPPINGS, env.getRequiredProperty(PROPERTY_NAME_ID_NEW_GENERATOR_MAPPINGS));
+//		properties.put(PROPERTY_NAME_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HBM2DDL_AUTO));
+//		for testing to include initial data
+//		properties.put("hibernate.hbm2ddl.import_files", "creating_static_rows.sql");
 		return properties;
 	}
 

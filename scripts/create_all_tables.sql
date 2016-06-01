@@ -109,7 +109,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `student_grade_management`.`all_groups` (
-  `ID` INT(11) NOT NULL,
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
   `Student_ID` INT(11) NOT NULL,
   `Student_group_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`),

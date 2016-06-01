@@ -29,5 +29,13 @@ public class TaskDaoImpl implements TaskDao {
 		List<Task> task = query.list();
 		return task;
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public Task getTask(String taskTitle) {
+		String sql = "from Task t where t.title = :title";
+		Query query = getCurrentSession().createQuery(sql).setParameter("title", taskTitle);
+		List<Task> tasks = query.list();
+		return tasks.get(0);
+	}
 
 }

@@ -5,12 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sgm.spring.dao.AllGroupsDao;
 import com.sgm.spring.dao.FacultyDao;
 import com.sgm.spring.dao.GradeDao;
 import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.dao.TaskDao;
 import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.dao.UserDao;
+import com.sgm.spring.exceptions.UserDoesntExistException;
+import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
@@ -34,6 +37,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 	FacultyDao facultyDao;
 	@Autowired
 	StudentGroupDao studentGroupDao;
+	@Autowired
+	AllGroupsDao allGroupsDao;
 
 	@Override
 	public List<Faculty> getFacultys() {
@@ -55,12 +60,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Override
 	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle) {
 		Long courseID = Long.valueOf(course.trim()).longValue();
-		return studentGroupDao.getGroups(facultyTitle.trim(), courseID,
-				subjectTitle.trim());
+		return studentGroupDao.getGroups(facultyTitle.trim(), courseID, subjectTitle.trim());
 	}
 
 	@Override
-	public List<Grade> getGrades(Long groupID, Long taskID ) {
+	public List<Grade> getGrades(Long groupID, Long taskID) {
 		return gradeDao.getGrades(groupID, taskID);
 	}
 
@@ -70,17 +74,35 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
-	public void addStudentGroup(String groupTitle, String facultyTitle, String subjectTitle, Long courseTitle,
-			Long professorID) {
-		// TODO Auto-generated method stub
-		
+	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException {
+		AllGroups allGroup;
+		for (User student : students) {
+			if (userDao.containsUser(student)) {
+				allGroup = new AllGroups();
+				allGroup.setId((long) 0);
+				allGroup.setStudent(student);
+				allGroup.setStudentGroup(studentGroupDao.getGroup(groupID));
+				allGroupsDao.addGroup(allGroup);
+			} else {
+				throw new UserDoesntExistException("User with id " + student.getId() + " doesnt exist!");
+			}
+		}
 	}
 
 	@Override
-	public void addStudentsToGroup(List<User> students, Long groupID) {
-		// TODO Auto-generated method stub
-		
+	public Long addStudentGroup(String groupTitle, Long course, String professorTitle, String subjectTitle,
+			String facultyTitle) {
+		User professor = userDao.getUser(professorTitle);
+		UniveristySubject subject = subjectDao.getSubject(subjectTitle);
+		Faculty faculty = facultyDao.getFaculty(facultyTitle);
+		StudentGroup studentGroup = new StudentGroup();
+		studentGroup.setUser(professor);
+		studentGroup.setCourse(course);
+		studentGroup.setTitle(groupTitle);
+		studentGroup.setSubject(subject);
+		studentGroup.setFaculty(faculty);
+		Long createdGroupID = studentGroupDao.addGroup(studentGroup);
+		return createdGroupID;
 	}
-	
 
 }

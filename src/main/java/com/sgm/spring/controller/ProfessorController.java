@@ -1,6 +1,7 @@
 package com.sgm.spring.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
 
@@ -20,7 +21,6 @@ import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
-import com.sgm.spring.model.User;
 import com.sgm.spring.model.json.StudentGroupJSON;
 import com.sgm.spring.service.ProfessorService;
 
@@ -50,22 +50,21 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
-	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students) throws ParseException, IOException {
+	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students, Principal principal) throws ParseException, IOException {
+		String userName = principal.getName();
 		try {
-			System.out.println(students.getGroupTitle());
-			System.out.println(students.getFacultyTitle());
-			System.out.println(students.getSubjectTitle());
-			System.out.println(students.getCourseTitle());
-			List<User> studentsList = students.getStudents();
-			System.out.println(studentsList.size());
-			for (User studentJSON : studentsList) {
-				System.out.println(studentJSON.getName());
-			}
-			return "Successfully added persons";
+			Long createdGroupID;
+			createdGroupID=professorService.addStudentGroup(students.getGroupTitle(), students.getCourseTitle(), userName,
+					students.getSubjectTitle(), students.getFacultyTitle());
+			professorService.addStudentsToGroup(students.getStudents(), createdGroupID);
+			return "Successfully created group";
 		} catch (Exception ex) {
+			return ex.getMessage();
 		}
-		return null;
 	}
+//	TODO create controller addStudentsToGroup
+	
+	
 
 	// get courses controller with post
 	@RequestMapping(value = "/professor/createGroup/viewCourses", method = RequestMethod.GET)

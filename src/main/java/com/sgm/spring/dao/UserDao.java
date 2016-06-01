@@ -14,5 +14,5 @@ public interface UserDao {
 
 	public void deleteUser(Long id);
 	
-
+	public boolean containsUser(User user);
 }

@@ -38,37 +38,41 @@ public class UniveritySubjectDaoImpl implements UniversitySubjectDao {
 		List<UniveristySubject> subjects = query.list();
 		return subjects;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
-		String sql = "select u from UniveristySubject u "
-				+ " inner join u.faculty f "
-				+ "where f.title = :faculty";
+		String sql = "select u from UniveristySubject u " + " inner join u.faculty f " + "where f.title = :faculty";
 		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle);
 		List<UniveristySubject> subjects = query.list();
 		return subjects;
 	}
-	
-	
-	
 
 	@Override
 	public void addSubject(UniveristySubject subject) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updateSubject(UniveristySubject subject) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteSubject(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public UniveristySubject getSubject(String subjectTitle) {
+		String sql = "from UniveristySubject u where u.title = :subjectTitle";
+		Query query = getCurrentSession().createQuery(sql).setParameter("subjectTitle", subjectTitle);
+		List<UniveristySubject> subjects = query.list();
+		return subjects.get(0);
+	}
 
 }
