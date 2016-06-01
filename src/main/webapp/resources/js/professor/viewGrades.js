@@ -17,6 +17,8 @@ $(document).ready(
             $("#course-chooser").empty();
             $("#subject-chooser").empty();
             $("#group-chooser").empty();
+            $("#task-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             var $this = $(this);
             selectedFacultyTitle = $this.text();
             $(".faculty-selection").parents('li,ul').removeClass('active');
@@ -26,8 +28,10 @@ $(document).ready(
             return false;
         });
         $("#course-chooser").on('click', 'li', function(e) {
-            $("#subject-chooser").empty();
-            $("#task-chooser").empty();
+        	 $("#subject-chooser").empty();
+             $("#group-chooser").empty();
+             $("#task-chooser").empty();
+             $('#set-student-grades').dataTable().fnClearTable();
             e.preventDefault();
             var $this = $(this);
             selectedCourseTitle = $this.text();
@@ -42,7 +46,9 @@ $(document).ready(
             return false;
         });
         $("#subject-chooser").on('click', 'li', function(e) {
-            $("#task-chooser").empty();
+        	 $("#task-chooser").empty();
+             $("#group-chooser").empty();
+             $('#set-student-grades').dataTable().fnClearTable();
             e.preventDefault();
             var $this = $(this);
             $(".subject-selection").parents('li,ul').removeClass('active');
@@ -63,7 +69,8 @@ $(document).ready(
 
         $("#group-chooser").on('click', 'li', function(e) {
             e.preventDefault();
-            $("#grade-chooser").empty();
+            $("#task-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             var $this = $(this);
             groupID = parseInt($this.attr('id'));
             $(".group-selection").parents('li,ul').removeClass('active');
@@ -83,6 +90,7 @@ $(document).ready(
         $("#task-chooser").on('click', 'li', function(e) {
             e.preventDefault();
             var $this = $(this);
+            $('#view-student-grades').dataTable().fnClearTable();
             taskID = parseInt($this.attr("id"));
             $(".task-selection").parents('li,ul').removeClass('active');
             $this.addClass('active');

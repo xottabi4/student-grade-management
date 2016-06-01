@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
@@ -106,6 +107,16 @@ public class ProfessorController {
 		return grades;
 	}
 
+	//to get all students for current group
+	@RequestMapping(value = "/professor/addGrades/setGrades", method = RequestMethod.GET)
+	public @ResponseBody List<AllGroups> getStudents(@RequestParam(value = "selectedGroupID") Long selectedGroupID) {
+		System.out.println("Selected group:"+selectedGroupID);
+		List<AllGroups> selectedGroup = professorService.getSelectedGroup(selectedGroupID);
+		System.out.println(selectedGroup.size());
+		System.out.println(selectedGroup.get(0).getStudent().getName());
+		return selectedGroup;
+	}
+	
 	@RequestMapping(value = "/professor/viewGrades", method = RequestMethod.GET)
 	public String getViewGrades(Model model) {
 		List<Faculty> facultys = professorService.getFacultys();

@@ -1,4 +1,3 @@
-
 INSERT INTO user(username,password,active,name,surname)
 VALUES ('mkyong','123456', true,'a','a'),
  ('alex','123456', true,'a','a'),
@@ -16,6 +15,7 @@ INSERT INTO task(Title)
 VALUES ('MD'),('KD'),('Eksāmens');
 
 
+
 INSERT INTO university_subject(Title,Faculty_ID)
 VALUES ('Matemātika',1),('Fizika',1),('tulkosana no krievu val',3),('pasaules ekonomika',2);
 
@@ -29,6 +29,7 @@ VALUES
 ('1.grupa EPF pasaules ekonom 2kurss',2,1,4,2),
 ('1.grupa Tulki tulkosana no krievu val 3kurss',3,1,3,3),
 ('1.grupa IT Matem 1kurss',2,1,1,1);
+
 
 
 

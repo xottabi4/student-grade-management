@@ -1,5 +1,7 @@
 $(document).ready(
     function() {
+        // TODO clean unused variables
+        // TODO clean table after every selection
         var selectedFacultyTitle;
         var selectedCourseTitle;
         var selectedSubjectTitle;
@@ -7,12 +9,16 @@ $(document).ready(
         var selectedGroupTitle;
         var taskID;
         var groupID;
+        var table = $('#set-student-grades').DataTable();
+
 
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
             $("#subject-chooser").empty();
             $("#group-chooser").empty();
+            $("#task-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             var $this = $(this);
             selectedFacultyTitle = $this.text();
             $(".faculty-selection").parents('li,ul').removeClass('active');
@@ -23,7 +29,9 @@ $(document).ready(
         });
         $("#course-chooser").on('click', 'li', function(e) {
             $("#subject-chooser").empty();
+            $("#group-chooser").empty();
             $("#task-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             e.preventDefault();
             var $this = $(this);
             selectedCourseTitle = $this.text();
@@ -39,6 +47,8 @@ $(document).ready(
         });
         $("#subject-chooser").on('click', 'li', function(e) {
             $("#task-chooser").empty();
+            $("#group-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             e.preventDefault();
             var $this = $(this);
             $(".subject-selection").parents('li,ul').removeClass('active');
@@ -59,15 +69,14 @@ $(document).ready(
 
         $("#group-chooser").on('click', 'li', function(e) {
             e.preventDefault();
-            $("#grade-chooser").empty();
+            $("#task-chooser").empty();
+            $('#set-student-grades').dataTable().fnClearTable();
             var $this = $(this);
-            groupID = $this.attr('id');
-            //alert($gID);
-            // $(".group-selection_id").hide();
+            groupID = parseInt($this.attr('id'));
             $(".group-selection").parents('li,ul').removeClass('active');
             $this.addClass('active');
             selectedGroupTitle = $this.text();
-            classname = $('.group-selection').attr('class');
+            classname = $('.group-selection').attr('value');
             var url = "/professor/createGroup/viewTasks";
             $.post(url,
                 function(result) {
@@ -81,50 +90,31 @@ $(document).ready(
         $("#task-chooser").on('click', 'li', function(e) {
             e.preventDefault();
             var $this = $(this);
-            taskID = $this.attr('id');
-            // $(".task-selection-id").hide();
+            $('#set-student-grades').dataTable().fnClearTable();
+            taskID = parseInt($this.attr("id"));
             $(".task-selection").parents('li,ul').removeClass('active');
             $this.addClass('active');
             selectedTaskTitle = $this.text();
-            var url = "/professor/createGroup/viewGrades";
-            $.post(url, {
-                    selectedTask: selectedTaskTitle.trim(),
-                    selectedGroup: selectedGroupTitle.trim()
-                },
-                function(result) {
-                    $("#grade-chooser").html(result);
-                    //This table is searching after name column
-                    var table = $('#view-student-grades').DataTable();
-                }
-            );
+            var url = "/professor/addGrades/setGrades";
+            $.get(url, {
+                selectedTaskID: taskID,
+                selectedGroupID: groupID
+            }, function(result) {
+                $(result).each(function(i, object) {
+                    var studentGrades = result[i];
+                    table.row.add([
+                            studentGrades.student.name,
+                            studentGrades.student.surname,
+                            '<td><input type="text" class="form-control description" value="" name="text"/></td>',
+                            '<td><input type="text" class="form-control grade" value="" name="text"/></td>'
+                        ]).draw(false)
+                        .nodes()
+                        .to$();
+                })
+            });
+
             return false;
         });
 
-
-
-
-        // Funkcija lai editetu tabulu
-        $(function() {
-            $("td").dblclick(
-                function() {
-                    var OriginalContent = $(this).text();
-                    $(this).addClass("cellEditing");
-                    $(this).html(
-                        "<input type='text' value='" + OriginalContent + "' />");
-                    $(this).children().first().focus();
-                    $(this).children().first().keypress(
-                        function(e) {
-                            if (e.which == 13) {
-                                var newContent = $(this).val();
-                                $(this).parent().text(newContent);
-                                $(this).parent().removeClass(
-                                    "cellEditing");
-                            }
-                        });
-                    $(this).children().first().blur(function() {
-                        $(this).parent().text(OriginalContent);
-                        $(this).parent().removeClass("cellEditing");
-                    });
-                });
-        });
     });
+

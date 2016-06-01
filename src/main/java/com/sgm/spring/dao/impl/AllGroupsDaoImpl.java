@@ -1,5 +1,8 @@
 package com.sgm.spring.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +25,14 @@ public class AllGroupsDaoImpl implements AllGroupsDao {
 	public void addGroup(AllGroups group) {
 		getCurrentSession().save(group);
 	}
-
+	@Override
+	public  List<AllGroups> getSelectedGroup(Long selectedGroupID) {
+		String sql = "select g from AllGroups g "
+				+ "inner join g.studentGroup as s "
+				+ "where s.id = :groupID ";
+		Query query = getCurrentSession().createQuery(sql)
+				.setParameter("groupID", selectedGroupID);
+		return query.list();
+				
+	}
 }

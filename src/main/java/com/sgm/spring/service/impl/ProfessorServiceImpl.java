@@ -105,4 +105,9 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return createdGroupID;
 	}
 
+	@Override
+	public List<AllGroups> getSelectedGroup(Long selectedGroupID) {
+		return allGroupsDao.getSelectedGroup(selectedGroupID);
+	}
+
 }
