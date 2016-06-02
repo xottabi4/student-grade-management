@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
+import com.sgm.spring.model.json.StudentGradeJSON;
 import com.sgm.spring.model.json.StudentGroupJSON;
 import com.sgm.spring.service.ProfessorService;
 
@@ -51,21 +53,41 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
-	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students, Principal principal) throws ParseException, IOException {
+	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students, Principal principal)
+			throws ParseException, IOException {
 		String userName = principal.getName();
 		try {
 			Long createdGroupID;
-			createdGroupID=professorService.addStudentGroup(students.getGroupTitle(), students.getCourseTitle(), userName,
-					students.getSubjectTitle(), students.getFacultyTitle());
+			createdGroupID = professorService.addStudentGroup(students.getGroupTitle(), students.getCourseTitle(),
+					userName, students.getSubjectTitle(), students.getFacultyTitle());
 			professorService.addStudentsToGroup(students.getStudents(), createdGroupID);
 			return "Successfully created group";
 		} catch (Exception ex) {
 			return ex.getMessage();
 		}
 	}
-//	TODO create controller addStudentsToGroup
-	
-	
+	// TODO create controller addStudentsToGroup
+
+	@RequestMapping(value = "/professor/setStudentGrades", method = RequestMethod.POST)
+	public @ResponseBody String addStudentGrades(@RequestBody StudentGradeJSON grades)
+			throws ParseException, IOException, HttpMessageNotReadableException {
+		try {
+			List<Grade> gradeList = grades.getGroupGrades();
+			for (Grade grade : gradeList) {
+				if (grade.getGrade() < 0 || grade.getGrade() > 10) {
+					String message = "Students: " + grade.getStudent().getId().toString() + " "
+							+ " grade inputed wrong";
+					return message;
+				}
+			}
+			if (gradeList.get(0).getStudent().getId() != null) {
+				professorService.addStudentGrades(gradeList);
+				return "Successfully added all student grades!";
+			}
+		} catch (Exception ex) {
+		}
+		return "There are no students selected or grades inputed!";
+	}
 
 	// get courses controller with post
 	@RequestMapping(value = "/professor/createGroup/viewCourses", method = RequestMethod.GET)
@@ -107,16 +129,13 @@ public class ProfessorController {
 		return grades;
 	}
 
-	//to get all students for current group
+	// to get all students for current group
 	@RequestMapping(value = "/professor/addGrades/setGrades", method = RequestMethod.GET)
 	public @ResponseBody List<AllGroups> getStudents(@RequestParam(value = "selectedGroupID") Long selectedGroupID) {
-		System.out.println("Selected group:"+selectedGroupID);
 		List<AllGroups> selectedGroup = professorService.getSelectedGroup(selectedGroupID);
-		System.out.println(selectedGroup.size());
-		System.out.println(selectedGroup.get(0).getStudent().getName());
 		return selectedGroup;
 	}
-	
+
 	@RequestMapping(value = "/professor/viewGrades", method = RequestMethod.GET)
 	public String getViewGrades(Model model) {
 		List<Faculty> facultys = professorService.getFacultys();

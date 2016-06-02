@@ -51,7 +51,7 @@
 														<table id="view-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>
 																<tr>
-
+																	<th>Matricula</th>
 																	<th>Name</th>
 																	<th>Surname</th>
 																	<th>Description</th>

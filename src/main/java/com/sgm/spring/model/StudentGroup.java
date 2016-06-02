@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "student_group")
 public class StudentGroup implements Serializable {
@@ -21,6 +23,7 @@ public class StudentGroup implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonProperty("groupID")
 	private Long id;
 
 	@Column(name = "Title")

@@ -110,4 +110,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return allGroupsDao.getSelectedGroup(selectedGroupID);
 	}
 
+	@Override
+	public void addStudentGrades(List<Grade> grades) {
+		for (Grade grade : grades) {
+			gradeDao.addGrade(grade);
+		}
+	}
+
 }

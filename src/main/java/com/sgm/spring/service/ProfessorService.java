@@ -27,6 +27,8 @@ public interface ProfessorService {
 
 	public List<Task> getTasks();
 
+	public void addStudentGrades(List<Grade> grades);
+	
 	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException;
 
 	public Long addStudentGroup(String groupTitle, Long course, String professorName, String subjectTitle,

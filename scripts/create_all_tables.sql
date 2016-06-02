@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`grade` (
   `Title` VARCHAR(255) NOT NULL,
   `Grade` INT(11) NOT NULL,
   `Description` VARCHAR(255) NOT NULL,
-  `Date` VARCHAR(255) NOT NULL,
+  `Date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `Student_ID` INT(11) NOT NULL,
   `Task_ID` INT(11) NOT NULL,
   `Group_ID` INT(11) NOT NULL,

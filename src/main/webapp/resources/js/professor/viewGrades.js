@@ -103,6 +103,7 @@ $(document).ready(
                 $(result).each(function(i, object) {
                     var studentGrades = result[i];
                     table.row.add([
+                            studentGrades.student.matrikula,
                             studentGrades.student.name,
                             studentGrades.student.surname,
                             studentGrades.description,

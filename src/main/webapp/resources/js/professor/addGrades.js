@@ -1,7 +1,5 @@
 $(document).ready(
     function() {
-        // TODO clean unused variables
-        // TODO clean table after every selection
         var selectedFacultyTitle;
         var selectedCourseTitle;
         var selectedSubjectTitle;
@@ -10,8 +8,19 @@ $(document).ready(
         var taskID;
         var groupID;
         var table = $('#set-student-grades').DataTable();
+        var students = {};
 
-
+        function isEmpty(s){
+        	if(s == "" || s == null){
+        		alert("You forgot to write the Theme!");
+        	}    
+        }
+        function isNumber(value)      
+        {       
+        	 if(Math.round(value) != value) {
+                 alert("Grade format wrong!");
+             }
+        }
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -65,8 +74,6 @@ $(document).ready(
             });
             return false;
         });
-        //
-
         $("#group-chooser").on('click', 'li', function(e) {
             e.preventDefault();
             $("#task-chooser").empty();
@@ -85,8 +92,6 @@ $(document).ready(
                 });
             return false;
         });
-
-
         $("#task-chooser").on('click', 'li', function(e) {
             e.preventDefault();
             var $this = $(this);
@@ -97,12 +102,14 @@ $(document).ready(
             selectedTaskTitle = $this.text();
             var url = "/professor/addGrades/setGrades";
             $.get(url, {
-                selectedTaskID: taskID,
+               // selectedTaskID: taskID,
                 selectedGroupID: groupID
             }, function(result) {
                 $(result).each(function(i, object) {
                     var studentGrades = result[i];
+                    students[i]=studentGrades.student.matrikula;
                     table.row.add([
+                            studentGrades.student.matrikula,     
                             studentGrades.student.name,
                             studentGrades.student.surname,
                             '<td><input type="text" class="form-control description" value="" name="text"/></td>',
@@ -112,9 +119,58 @@ $(document).ready(
                         .to$();
                 })
             });
-
             return false;
         });
-
+        $("#submit-data").on('click', function(e) {
+            e.preventDefault();
+            var data = table.$('input');
+            var data_array = [];
+            var item = {};
+            var student={};
+            var i=0;
+            var group={};
+            var task={};
+            var themeTitle = $('#theme-title-input>input').val().trim();
+            isEmpty(themeTitle);
+            $.each(data, function(index, element) {
+                if ($(this).hasClass('description')) {
+                    item = {};
+                    student={};
+                    group={};
+                    task={};
+                    group['groupID']=groupID;
+                    task['taskID']= taskID;
+                    student['matrikula']=students[i];
+                    item['task']=task;
+                    item['studentGroup']=group;
+                    item['student'] = student;
+                    item['description'] = $(this).val();
+                    item['title']=themeTitle;
+                    i=i+1;
+                } else if ($(this).hasClass('grade')) {
+                    item['grade'] = $(this).val();
+                  isNumber($(this).val());
+               	 data_array.push(item);
+                } 
+            });
+            var serialized = JSON.stringify({
+	             groupGrades: data_array,
+            });
+           // alert("table has \n" + serialized);
+            $.ajax({
+                url: "/professor/setStudentGrades",
+                type: 'POST',
+                data: serialized,
+                dataType: "html",
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                success: function(data) {
+                    alert(data);
+                    return false;
+                }
+            });
+            return false;
+        });
     });
+
 
