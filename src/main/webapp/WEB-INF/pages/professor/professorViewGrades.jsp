@@ -45,9 +45,10 @@
 													<div id="group-chooser"></div>
 
 													<div id="task-chooser"></div>
-
 													<hr>
 													<hr>
+													
+													
 														<table id="view-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>
 																<tr>
@@ -60,17 +61,23 @@
 																</tr>
 															</thead>
 															<tbody>
-																<%-- <c:forEach items="${grades}" var="grade">
-																	<tr>
-																		<td>${grade.student.id}</td>
-																		<td>${grade.student.name}</td>
-																		<td>${grade.student.surname}</td>
-																		<td>${grade.grade}</td>
-
-																	</tr>
-																</c:forEach> --%>
 															</tbody>
 														</table>
+														<div id='divTable'>
+														<table id="view-student-average-grades" class="table table-responsive table-bordered table-hover table-condensed">
+															<thead>
+																<tr>
+																	<th>Matricula</th>
+																	<th>Average Grade</th>
+																</tr>
+															</thead>
+															<tbody>
+															</tbody>
+														</table>
+														</div>
+														<div class="col-sm-6 center-block">
+															<a href="#" id="average-grade-data" class="btn btn-primary btn-md btn-info pull-left " role="button">Average Grade</a>
+														</div>
 
 													</div>
 													<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>

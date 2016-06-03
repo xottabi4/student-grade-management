@@ -1,5 +1,6 @@
 package com.sgm.spring.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,27 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Override
 	public List<Grade> getGrades(Long groupID, Long taskID) {
 		return gradeDao.getGrades(groupID, taskID);
+	}
+
+	@Override
+	public List<Double> getAverageGrade(List<AllGroups> students, List<Grade> grades) {
+
+		List<Double> studentAverageGrades = new ArrayList<>();
+		double averageGrade = 0;
+		int i = 0;
+		for (int j = 0; j < students.size(); j++) {
+			averageGrade = 0;
+			i = 0;
+			for (Grade grade : grades) {
+				if (grade.getStudent().getId() == students.get(j).getStudent().getId()) {
+					averageGrade += (double) grade.getGrade();
+					i++;
+				}
+			}
+			averageGrade = averageGrade / i;
+			studentAverageGrades.add(averageGrade);
+		}
+		return studentAverageGrades;
 	}
 
 	@Override
