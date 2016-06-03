@@ -16,42 +16,7 @@ public class StudentGroupJSON implements Serializable {
 	private static final long serialVersionUID = 7940678267276677886L;
 	@JsonProperty("students")
 	private List<User> students;
-	private String groupTitle;
-	private String facultyTitle;
-	private String subjectTitle;
-	private Long courseTitle;
-
-	public String getFacultyTitle() {
-		return facultyTitle;
-	}
-
-	public void setFacultyTitle(String facultyTitle) {
-		this.facultyTitle = facultyTitle;
-	}
-
-	public String getSubjectTitle() {
-		return subjectTitle;
-	}
-
-	public void setSubjectTitle(String subjectTitle) {
-		this.subjectTitle = subjectTitle;
-	}
-
-	public Long getCourseTitle() {
-		return courseTitle;
-	}
-
-	public void setCourseTitle(Long courseTitle) {
-		this.courseTitle = courseTitle;
-	}
-
-	public String getGroupTitle() {
-		return groupTitle;
-	}
-
-	public void setGroupTitle(String groupTitle) {
-		this.groupTitle = groupTitle;
-	}
+	private Long groupID;
 
 	public List<User> getStudents() {
 		return students;
@@ -61,4 +26,13 @@ public class StudentGroupJSON implements Serializable {
 		this.students = students;
 	}
 
+	public Long getGroupID() {
+		return groupID;
+	}
+
+	public void setGroupID(Long groupID) {
+		this.groupID = groupID;
+	}
+
+	
 }

@@ -61,11 +61,10 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean containsUser(User user) {
-		if (getUser(user.getId())==null) {
+		if (getUser(user.getId()) == null) {
 			return false;
 		}
 		return true;
-//		return getCurrentSession().contains(user);
 	}
 
 }

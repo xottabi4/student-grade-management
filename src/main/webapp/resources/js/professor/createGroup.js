@@ -42,23 +42,15 @@ $(document).ready(function() {
     $("#submit-data").on('click', function(e) {
         e.preventDefault();
         var groupTitle = $('#group-title-input>input').val().trim();
-        var serialized = JSON.stringify({
+        var url = "/professor/createGroup";
+        $.post(url, {
             groupTitle: groupTitle,
-            facultyTitle: selectedFacultyTitle,
-            courseTitle: parseInt(selectedCourseTitle),
-            subjectTitle: selectedSubjectTitle
-        });
-        $.ajax({
-            url: "/professor/createGroup",
-            type: 'POST',
-            data: serialized,
-            dataType: "html",
-            contentType: 'application/json',
-            mimeType: 'application/json',
-            success: function(data) {
-                alert(data);
-                return false;
-            }
+            selectedFaculty: selectedFacultyTitle,
+            selectedCourse: parseInt(selectedCourseTitle),
+            selectedSubject: selectedSubjectTitle
+        }, function(result) {
+            alert(result.message);
+            location.reload();
         });
         return false;
     });

@@ -25,14 +25,13 @@ public class AllGroupsDaoImpl implements AllGroupsDao {
 	public void addGroup(AllGroups group) {
 		getCurrentSession().save(group);
 	}
+
+	@SuppressWarnings("unchecked")
 	@Override
-	public  List<AllGroups> getSelectedGroup(Long selectedGroupID) {
-		String sql = "select g from AllGroups g "
-				+ "inner join g.studentGroup as s "
-				+ "where s.id = :groupID ";
-		Query query = getCurrentSession().createQuery(sql)
-				.setParameter("groupID", selectedGroupID);
+	public List<AllGroups> getSelectedGroup(Long selectedGroupID) {
+		String sql = "select g from AllGroups g " + "inner join g.studentGroup as s " + "where s.id = :groupID ";
+		Query query = getCurrentSession().createQuery(sql).setParameter("groupID", selectedGroupID);
 		return query.list();
-				
+
 	}
 }

@@ -3,6 +3,7 @@ package com.sgm.spring.service;
 import java.util.List;
 
 import com.sgm.spring.exceptions.UserDoesntExistException;
+import com.sgm.spring.exceptions.UserIsNotStudentException;
 import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
@@ -22,7 +23,7 @@ public interface ProfessorService {
 	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle);
 
 	public List<Grade> getGrades(Long groupID, Long taskID);
-	
+
 	public List<AllGroups> getSelectedGroup(Long selectedGroupID);
 	
 	public List<Double> getAverageGrade(List<AllGroups> students,List<Grade> grades);
@@ -30,9 +31,10 @@ public interface ProfessorService {
 	public List<Task> getTasks();
 
 	public void addStudentGrades(List<Grade> grades);
-	
-	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException;
 
-	public Long addStudentGroup(String groupTitle, Long course, String professorName, String subjectTitle,
+	public void addStudentsToGroup(List<User> students, Long groupID)
+			throws UserDoesntExistException, UserIsNotStudentException;
+
+	public void addStudentGroup(String groupTitle, Long course, String professorName, String subjectTitle,
 			String facultyTitle);
 }
