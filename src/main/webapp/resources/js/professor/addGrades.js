@@ -9,18 +9,8 @@ $(document).ready(
         var groupID;
         var table = $('#set-student-grades').DataTable();
         var students = {};
-
-        function isEmpty(s){
-        	if(s == "" || s == null){
-        		alert("You forgot to write the Theme!");
-        	}    
-        }
-        function isNumber(value)      
-        {       
-        	 if(Math.round(value) != value) {
-                 alert("Grade format wrong!");
-             }
-        }
+        var gradeProblem=false;
+       
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -130,8 +120,8 @@ $(document).ready(
             var i=0;
             var group={};
             var task={};
+            gradeProblem=false;
             var themeTitle = $('#theme-title-input>input').val().trim();
-            isEmpty(themeTitle);
             $.each(data, function(index, element) {
                 if ($(this).hasClass('description')) {
                     item = {};
@@ -148,15 +138,33 @@ $(document).ready(
                     item['title']=themeTitle;
                     i=i+1;
                 } else if ($(this).hasClass('grade')) {
-                    item['grade'] = $(this).val();
-                  isNumber($(this).val());
-               	 data_array.push(item);
+                	if(Math.round($(this).val()) != $(this).val()) {
+                        alert("Grade format wrong!");
+                        gradeProblem=true;
+                    }else if($(this).val()==""){
+                    	 alert("Grades not inputed!");
+                         gradeProblem=true;
+                    }
+                    else if((parseInt($(this).val()))>10||(parseInt($(this).val()))<0){
+                    	alert("Wrong grades inputed!");
+                        gradeProblem=true;
+                    }
+                    else{
+                    	
+                	item['grade'] = $(this).val();
+                  //isNumber($(this).val());
+               	 data_array.push(item);}
                 } 
             });
             var serialized = JSON.stringify({
 	             groupGrades: data_array,
             });
            // alert("table has \n" + serialized);
+            if(themeTitle == "" || themeTitle == null){
+        		alert("You forgot to write the Theme!");
+        	} else if (gradeProblem==true){
+        		
+        	}else{
             $.ajax({
                 url: "/professor/setStudentGrades",
                 type: 'POST',
@@ -169,6 +177,9 @@ $(document).ready(
                     return false;
                 }
             });
+        	}
+            
+            
             return false;
         });
     });

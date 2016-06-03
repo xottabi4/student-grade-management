@@ -25,6 +25,8 @@ public interface ProfessorService {
 	public List<Grade> getGrades(Long groupID, Long taskID);
 
 	public List<AllGroups> getSelectedGroup(Long selectedGroupID);
+	
+	public List<Double> getAverageGrade(List<AllGroups> students,List<Grade> grades);
 
 	public List<Task> getTasks();
 

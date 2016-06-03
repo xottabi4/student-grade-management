@@ -75,20 +75,12 @@ public class ProfessorController {
 			throws ParseException, IOException, HttpMessageNotReadableException {
 		try {
 			List<Grade> gradeList = grades.getGroupGrades();
-			for (Grade grade : gradeList) {
-				if (grade.getGrade() < 0 || grade.getGrade() > 10) {
-					String message = "Students: " + grade.getStudent().getId().toString() + " "
-							+ " grade inputed wrong";
-					return message;
-				}
-			}
-			if (gradeList.get(0).getStudent().getId() != null) {
-				professorService.addStudentGrades(gradeList);
-				return "Successfully added all student grades!";
-			}
+			professorService.addStudentGrades(gradeList);
+			return "Successfully added all student grades!";
+
 		} catch (Exception ex) {
 		}
-		return "There are no students selected or grades inputed!";
+		return "Failure!";
 	}
 
 	// get courses controller with post
@@ -131,6 +123,16 @@ public class ProfessorController {
 		return grades;
 	}
 
+	@RequestMapping(value = "/professor/viewGrades/averageGrade", method = RequestMethod.GET)
+	public @ResponseBody List<Double> getStudentAverageGrade(@RequestParam(value = "selectedGroupID") Long selectedGroupID,
+			@RequestParam(value = "selectedTaskID") Long selectedTaskID) {
+		List<AllGroups> selectedGroup = professorService.getSelectedGroup(selectedGroupID);
+		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskID);
+		List<Double> averageGrades = professorService.getAverageGrade(selectedGroup, grades);
+		return averageGrades;
+	}
+	
+	
 	// to get all students for current group
 	@RequestMapping(value = "/professor/addGrades/setGrades", method = RequestMethod.GET)
 	public @ResponseBody List<AllGroups> getStudents(@RequestParam(value = "selectedGroupID") Long selectedGroupID) {

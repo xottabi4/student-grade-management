@@ -1,7 +1,5 @@
-$(document).ready(
+$(document).ready(	
     function() {
-        // TODO clean unused variables
-        // TODO clean table after every selection
         var selectedFacultyTitle;
         var selectedCourseTitle;
         var selectedSubjectTitle;
@@ -9,9 +7,12 @@ $(document).ready(
         var selectedGroupTitle;
         var taskID;
         var groupID;
+        var data_array = [];
+        
         var table = $('#view-student-grades').DataTable();
-
-
+        var table2 = $('#view-student-average-grades').DataTable();
+        $('#divTable').hide();
+        
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -102,6 +103,7 @@ $(document).ready(
             }, function(result) {
                 $(result).each(function(i, object) {
                     var studentGrades = result[i];
+                    data_array.push(studentGrades.student.matrikula);
                     table.row.add([
                             studentGrades.student.matrikula,
                             studentGrades.student.name,
@@ -113,9 +115,38 @@ $(document).ready(
                         .nodes()
                         .to$();
                 })
+                
             });
 
             return false;
+        }); 
+        
+        $("#average-grade-data").on('click', function(e) {
+        	if(taskID == null || groupID == null || data_array[0]==null){	
+        		alert("No students selected!");
+            }else{
+        	$('#divTable').show();
+        	 $('#view-student-average-grades').dataTable().fnClearTable();
+            e.preventDefault();
+            var url = "/professor/viewGrades/averageGrade";
+            $.get(url, {
+                selectedTaskID: taskID,
+                selectedGroupID: groupID
+            }
+            ,function(result) {
+                $(result).each(function(i, object) {
+                    var studentGrades = result[i];
+                    var averageGrade = data_array[i];
+                    table2.row.add([
+                           averageGrade,
+                           studentGrades
+                        ]).draw(false)
+                        .nodes()
+                        .to$();
+                })
+            });
+            return false;
+            }
         });
-
+        
     });

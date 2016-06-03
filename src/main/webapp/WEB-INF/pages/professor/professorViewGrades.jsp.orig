@@ -45,8 +45,13 @@
 													<div id="group-chooser"></div>
 
 													<div id="task-chooser"></div>
-
-											        	<hr>
+													<hr>
+<<<<<<< HEAD
+=======
+													<hr>
+													
+													
+>>>>>>> faa1c68a6ab450bddf611437b1ceeaf1271d7c72
 														<table id="view-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>
 																<tr>
