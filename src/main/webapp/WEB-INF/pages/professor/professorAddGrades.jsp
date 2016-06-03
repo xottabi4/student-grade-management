@@ -29,60 +29,55 @@
 												<div class="col-sm-8 text-left">
 													<h1>Welcome</h1>
 													<hr>
-													<h4 class="bg-info" style ="color:#336666;">Choose faculty</h4>
-													<ul id="faculty-selection" class="nav nav-pills">
-														<c:forEach items="${facultys}" var="faculty">
-															<li>
-																<a class="faculty-selection" href="#">${faculty.title}</a>
-															</li>
-														</c:forEach>
-													</ul>
+														<h4 class="bg-info" style="color:#336666;">Choose faculty</h4>
+														<ul id="faculty-selection" class="nav nav-pills">
+															<c:forEach items="${facultys}" var="faculty">
+																<li>
+																	<a class="faculty-selection" href="#">${faculty.title}</a>
+																</li>
+															</c:forEach>
+														</ul>
 
-													<div id="course-chooser"></div>
+														<div id="course-chooser"></div>
 
-													<div id="subject-chooser"></div>
+														<div id="subject-chooser"></div>
 
-													<div id="group-chooser"></div>
+														<div id="group-chooser"></div>
 
-													<div id="task-chooser"></div>
+														<div id="task-chooser"></div>
 
-													<hr>
-														<div class="row">
-														<div class="col-sm-4 ">
+														<hr>
+															<div class="row">
+																<div class="col-sm-4 ">
 
-															<div id="theme-title-input" class="input-theme" style="margin-top: 10px;">
-																<span class="input-theme-addon" id="basic-addon1">Theme title:
-																</span>
-																<input type="text" class="form-control" aria-describedby="basic-addon1"></div>
+																	<div id="theme-title-input" class="input-theme" style="margin-top: 10px;">
+																		<span class="input-theme-addon" id="basic-addon1">Theme title:
+																		</span>
+																		<input type="text" class="form-control" aria-describedby="basic-addon1"></div>
+																	</div>
+
+																</div>
+																<hr>
+																	<table id="set-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
+																		<thead>
+																			<tr>
+																				<th>Matricula</th>
+																				<th>Name</th>
+																				<th>Surname</th>
+																				<th>Description</th>
+																				<th>Grade</th>
+
+																			</tr>
+																		</thead>
+																		<tbody></tbody>
+																	</table>
+																	<div class="col-sm-6 center-block">
+																		<a href="#" id="submit-data" class="btn btn-primary btn-md btn-info pull-right " role="button">Submit</a>
+																	</div>
+																</div>
+																<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 															</div>
-
 														</div>
-													<hr>
-														<table id="set-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
-															<thead>
-																<tr>
-																	<th>Matricula</th>
-																	<th>Name</th>
-																	<th>Surname</th>
-																	<th>Description</th>
-																	<th>Grade</th>
-
-																</tr>
-															</thead>
-															<tbody>
-										
-																
-															</tbody>
-														</table>
-													<div class="col-sm-6 center-block">
-												<a href="#" id="submit-data" class="btn btn-primary btn-md btn-info pull-right " role="button">Submit</a>
-													</div>
-													</div>
-													<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
-												</div>
-											</div>
-											<jsp:include page="/WEB-INF/pages/footer.jsp"/>
-										</body>
-									</html>
-
-
+														<jsp:include page="/WEB-INF/pages/footer.jsp"/>
+													</body>
+												</html>

@@ -7,7 +7,7 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 					<meta name="description" content="">
 						<meta name="author" content="">
-							<title>SGM professor add grades</title>
+							<title>SGM professor view grades</title>
 
 							<link href="<c:url value=" /resources/css/pageLayout.css" />" rel="stylesheet">
 								<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.css"/>
@@ -46,7 +46,6 @@
 
 													<div id="task-chooser"></div>
 
-													<hr>
 													<hr>
 														<table id="view-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>

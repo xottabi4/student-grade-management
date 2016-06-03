@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.sgm.spring.json.JsonResponse;
 import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
@@ -34,17 +35,6 @@ public class ProfessorController {
 	@Autowired
 	ProfessorService professorService;
 
-	// @RequestMapping(value = "/addPersons", method = RequestMethod.POST)
-	// public @ResponseBody String addPersons(@RequestBody PersonList persons)
-	// throws ParseException, IOException {
-	// log.debug("Adding new persons");
-	// try {
-	// // perform add operation
-	// return "Successfully added persons";
-	// } catch (Exception ex) {
-	// }
-	// }
-
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.GET)
 	public String getCreateGroup(Model model) {
 		List<Faculty> facultys = professorService.getFacultys();
@@ -53,20 +43,32 @@ public class ProfessorController {
 	}
 
 	@RequestMapping(value = "/professor/createGroup", method = RequestMethod.POST)
-	public @ResponseBody String createGroup(@RequestBody StudentGroupJSON students, Principal principal)
-			throws ParseException, IOException {
+	public @ResponseBody JsonResponse createGroup(@RequestParam(value = "selectedFaculty") String selectedFacultyTitle,
+			@RequestParam(value = "selectedSubject") String selectedSubjectTitle,
+			@RequestParam(value = "selectedCourse") Long selectedCourseID,
+			@RequestParam(value = "groupTitle") String groupTitle, Principal principal) {
 		String userName = principal.getName();
+		professorService.addStudentGroup(groupTitle, selectedCourseID, userName, selectedSubjectTitle,
+				selectedFacultyTitle);
+		return new JsonResponse("Successfully created group", true);
+	}
+
+	@RequestMapping(value = "/professor/addStudentsToGroup", method = RequestMethod.GET)
+	public String getAddStudentsToGroup(Model model) {
+		List<Faculty> facultys = professorService.getFacultys();
+		model.addAttribute("facultys", facultys);
+		return "professor/professorAddStudentsToGroup";
+	}
+
+	@RequestMapping(value = "/professor/addStudentsToGroup", method = RequestMethod.POST)
+	public @ResponseBody JsonResponse addStudentsToGroup(@RequestBody StudentGroupJSON students) {
 		try {
-			Long createdGroupID;
-			createdGroupID = professorService.addStudentGroup(students.getGroupTitle(), students.getCourseTitle(),
-					userName, students.getSubjectTitle(), students.getFacultyTitle());
-			professorService.addStudentsToGroup(students.getStudents(), createdGroupID);
-			return "Successfully created group";
+			professorService.addStudentsToGroup(students.getStudents(), students.getGroupID());
+			return new JsonResponse("Successfully added students to group", true);
 		} catch (Exception ex) {
-			return ex.getMessage();
+			return new JsonResponse(ex.getMessage(), false);
 		}
 	}
-	// TODO create controller addStudentsToGroup
 
 	@RequestMapping(value = "/professor/setStudentGrades", method = RequestMethod.POST)
 	public @ResponseBody String addStudentGrades(@RequestBody StudentGradeJSON grades)
@@ -149,4 +151,5 @@ public class ProfessorController {
 		model.addAttribute("facultys", facultys);
 		return "professor/professorAddGrades";
 	}
+
 }

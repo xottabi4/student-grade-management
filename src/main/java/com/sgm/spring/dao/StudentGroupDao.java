@@ -8,7 +8,9 @@ public interface StudentGroupDao {
 
 	public StudentGroup getGroup(Long groupID);
 	
+	public StudentGroup getGroup(String groupTitle);
+	
 	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle);
 
-	public Long addGroup(StudentGroup studentGroup);
+	public void addGroup(StudentGroup studentGroup);
 }

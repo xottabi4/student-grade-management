@@ -22,9 +22,8 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 	}
 
 	@Override
-	public Long addGroup(StudentGroup studentGroup) {
+	public void addGroup(StudentGroup studentGroup) {
 		getCurrentSession().save(studentGroup);
-		return studentGroup.getId();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -42,6 +41,15 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 	public StudentGroup getGroup(Long groupID) {
 		StudentGroup group = (StudentGroup) getCurrentSession().get(StudentGroup.class, groupID);
 		return group;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public StudentGroup getGroup(String groupTitle) {
+		String sql = "from StudentGroup g where g.title = :title";
+		Query query = getCurrentSession().createQuery(sql).setParameter("title", groupTitle);
+		List<StudentGroup> groups = query.list();
+		return groups.get(0);
 	}
 
 }

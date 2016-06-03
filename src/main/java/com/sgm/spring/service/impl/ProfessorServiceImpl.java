@@ -12,7 +12,9 @@ import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.dao.TaskDao;
 import com.sgm.spring.dao.UniversitySubjectDao;
 import com.sgm.spring.dao.UserDao;
+import com.sgm.spring.dao.UserTypeDao;
 import com.sgm.spring.exceptions.UserDoesntExistException;
+import com.sgm.spring.exceptions.UserIsNotStudentException;
 import com.sgm.spring.model.AllGroups;
 import com.sgm.spring.model.Faculty;
 import com.sgm.spring.model.Grade;
@@ -27,6 +29,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	UserTypeDao userTypeDao;
 	@Autowired
 	GradeDao gradeDao;
 	@Autowired
@@ -74,23 +78,26 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
-	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException {
+	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException, UserIsNotStudentException {
 		AllGroups allGroup;
 		for (User student : students) {
-			if (userDao.containsUser(student)) {
+			student = userDao.getUser(student.getId());
+			if (!userDao.containsUser(student)) {
+				throw new UserDoesntExistException("User with id " + student.getId() + " doesnt exist!");
+			} else if (!userTypeDao.isStudent(student)) {
+				throw new UserIsNotStudentException("User with id " + student.getId() + " is not student!");
+			} else {
 				allGroup = new AllGroups();
 				allGroup.setId((long) 0);
 				allGroup.setStudent(student);
 				allGroup.setStudentGroup(studentGroupDao.getGroup(groupID));
 				allGroupsDao.addGroup(allGroup);
-			} else {
-				throw new UserDoesntExistException("User with id " + student.getId() + " doesnt exist!");
 			}
 		}
 	}
 
 	@Override
-	public Long addStudentGroup(String groupTitle, Long course, String professorTitle, String subjectTitle,
+	public void addStudentGroup(String groupTitle, Long course, String professorTitle, String subjectTitle,
 			String facultyTitle) {
 		User professor = userDao.getUser(professorTitle);
 		UniveristySubject subject = subjectDao.getSubject(subjectTitle);
@@ -101,8 +108,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 		studentGroup.setTitle(groupTitle);
 		studentGroup.setSubject(subject);
 		studentGroup.setFaculty(faculty);
-		Long createdGroupID = studentGroupDao.addGroup(studentGroup);
-		return createdGroupID;
+		studentGroupDao.addGroup(studentGroup);
 	}
 
 	@Override
