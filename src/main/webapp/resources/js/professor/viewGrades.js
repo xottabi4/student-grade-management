@@ -1,3 +1,4 @@
+
 $(document).ready(	
     function() {
         var selectedFacultyTitle;
@@ -12,7 +13,8 @@ $(document).ready(
         var table = $('#view-student-grades').DataTable();
         var table2 = $('#view-student-average-grades').DataTable();
         $('#divTable').hide();
-        
+
+//        table.editable();
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -148,5 +150,8 @@ $(document).ready(
             return false;
             }
         });
+        
+        
+      
         
     });

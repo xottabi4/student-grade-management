@@ -13,12 +13,13 @@
 								<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.css"/>
 								<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap.min.css">
 									<link rel="stylesheet" href="/webjars/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+										<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
 										<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 										<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.js"></script>
 										<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 										<script src="<c:url value=" /resources/js/mainPageScrips.js" />"></script>
 										<script src="<c:url value=" /resources/js/professor/viewGrades.js" />"></script>
-										<%-- <script type="text/javascript" src="script.js"></script> --%>
+										<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 									</head>
 
 									<body>
