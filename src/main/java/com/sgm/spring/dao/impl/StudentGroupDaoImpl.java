@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.model.StudentGroup;
+import com.sgm.spring.model.Task;
 
 @Repository
 public class StudentGroupDaoImpl implements StudentGroupDao {
@@ -50,6 +51,15 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 		Query query = getCurrentSession().createQuery(sql).setParameter("title", groupTitle);
 		List<StudentGroup> groups = query.list();
 		return groups.get(0);
+	}
+
+	@Override
+	public List<StudentGroup> getAllGroups(Long facultyID) {
+		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "where f.id = :faculty";
+		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyID);
+		List<StudentGroup> groups = query.list();
+		return groups;
+		
 	}
 
 }

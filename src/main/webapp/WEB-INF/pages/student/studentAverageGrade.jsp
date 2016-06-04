@@ -18,7 +18,7 @@
 										<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.js"></script>
 										<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 										<script src="<c:url value=" /resources/js/mainPageScrips.js" />"></script>
-										<script src="<c:url value=" /resources/js/student/viewSubjects.js" />"></script>
+										<script src="<c:url value=" /resources/js/student/viewAverageGrades.js" />"></script>
 										<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 									</head>
 
@@ -33,30 +33,19 @@
 												<h4 class="bg-info" style ="color:#336666;">Choose faculty</h4>
 													<ul id="faculty-selection" class="nav nav-pills">
 														<c:forEach items="${facultys}" var="faculty">
-															<li id="${faculty.id}">
+															<li>
 																<a class="faculty-selection" href="#">${faculty.title}</a>
 															</li>
 														</c:forEach>
 													</ul>
 
-													<div id="professor-chooser"></div>
+													<div id="course-chooser"></div>
 
-												
-											        	<hr>
-														<table id="view-student-professors" class="table table-responsive table-bordered table-hover table-condensed">
-															<thead>
-																<tr>
-																	<th>Professor name</th>
-																	<th>Professor surname</th>
-																	<th>Subject</th>
-																	<th>Student Group</th>
-																	<th>Home Page</th>
-																</tr>
-															</thead>
-															<tbody>
-															
-															</tbody>
-														</table>
+													<div id="subject-chooser"></div>
+
+													<div id="group-chooser"></div>
+													
+													<div id="task-chooser"></div>
 
 											        	<hr>
 											        	</div>

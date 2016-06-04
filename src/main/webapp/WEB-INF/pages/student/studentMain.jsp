@@ -27,27 +27,46 @@
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
-			<div id = "content" class=" wrapper col-sm-8 text-left">
-				<h1>Message : ${message}</h1>
-				<br>
-				<h2>Welcome : ${username}</h2>
-				<br>
-				<form action="/student/grades">
-					<input type="submit" value="Check My Grades">
-				</form>
-				<form action="/student/subjects">
-					<input type="submit" value="All subjects">
-				</form>
-
-
-				<h1>Reading Checkbox Data</h1>
-				<ul>
-					<li><p>
-							<b>Maths Flag:</b>
-							<%=request.getParameter("${info.id}")%>
-						</p></li>
-
+			<div class="col-sm-8 text-left">
+				<div id="main-content">
+		<div id="left-column">
+			<div id="logo">
+			<img src="http://imgur.com/aomB4KX.jpg" width="140" height="30" />
+			</div>
+			<div class="box">
+			<div id="main-image"><img src="http://imgur.com/1IcCAFm.jpg" width="120" height="140" /></div>
+        		<h2>Michael Scott</h2>
+        		<p><i>Student</i></p>
+        		<p>Here are some of my interests: </p>
+				<ul style="margin-top:10px; line-height:20px; ">
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
 				</ul>
+			</div>
+			</div>
+				<div id="right-column">
+			<div class="sidebar">
+				<h3>About me.</h3>
+				<p>
+				You've done basic HTML and CSS formatting, 
+				and just finished up the Intro to CSS Positioning
+				 lesson. Now you're going to apply
+				  it to build a website layout for yourself.
+				</p>
+				
+				<div class="contact-information">
+				<h3>Contact Information</h3>
+					<ul>
+						<li>Talr.: +371 63628303</li>
+						<li>E-mail:	info@venta.lv</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+			</div>
 			</div>
 			<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
 		</div>

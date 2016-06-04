@@ -11,6 +11,8 @@ public interface StudentGroupDao {
 	public StudentGroup getGroup(String groupTitle);
 	
 	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle);
+	
+	public List<StudentGroup> getAllGroups(Long facultyID);
 
 	public void addGroup(StudentGroup studentGroup);
 }

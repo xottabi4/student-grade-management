@@ -10,12 +10,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="menu nav navbar-nav">
+			
 				<li><a id="home" href="/student">Home</a></li>
-				<li><a id="grades" href="/student/grades">My grades</a></li>
-				<li><a id="subjects" href="/student/subjects">My Subjects</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Projects</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a id="grades" href="/student/viewGrades">My grades</a></li>
+				<li><a id="subjects" href="/student/viewAverageGrades">Average Gardes</a></li>
+				<li><a id="profesors" href="/student/viewSubjects">Professors</a></li>
+	
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/logout"><span

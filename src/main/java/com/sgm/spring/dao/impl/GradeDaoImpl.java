@@ -67,4 +67,35 @@ public class GradeDaoImpl implements GradeDao {
 		return query.list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Grade> getGrades(Long userID, Long groupID, Long taskID) {
+		String sql = "select g from Grade g "
+				+ "inner join g.studentGroup as s "
+				+ "inner join g.task as t "
+				+ "inner join g.student as st "
+				+ "where s.id = :groupID and "
+				+ "t.id = :taskID and "
+				+"st.id = :userID";
+		Query query = getCurrentSession().createQuery(sql)
+				.setParameter("groupID", groupID)
+				.setParameter("taskID", taskID)
+				.setParameter("userID", userID);
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Grade> getAllStudentGrades(Long groupID, Long userID) {
+		String sql = "select g from Grade g "
+				+ "inner join g.studentGroup as s "
+				+ "inner join g.student as st "
+				+ "where s.id = :groupID and "
+				+"st.id = :userID";
+		Query query = getCurrentSession().createQuery(sql)
+				.setParameter("groupID", groupID)
+				.setParameter("userID", userID);
+		return query.list();
+	}
+
 }

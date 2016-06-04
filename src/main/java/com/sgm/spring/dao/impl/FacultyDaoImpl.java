@@ -30,7 +30,7 @@ public class FacultyDaoImpl implements FacultyDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Faculty getFaculty(String title) {
-		String sql = "from Faculty f where f.title = :title";
+		String sql = "select from Faculty f where f.title = :title";
 		Query query = getCurrentSession().createQuery(sql).setParameter("title", title);
 		List<Faculty> faluctys = query.list();
 		return faluctys.get(0);
