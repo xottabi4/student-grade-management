@@ -14,7 +14,6 @@ $(document).ready(
         var table2 = $('#view-student-average-grades').DataTable();
         $('#divTable').hide();
 
-//        table.editable();
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -84,7 +83,6 @@ $(document).ready(
             $.post(url,
                 function(result) {
                     $("#task-chooser").html(result);
-                    // $(".task-selection-id").hide();
                 });
             return false;
         });
@@ -120,38 +118,5 @@ $(document).ready(
 
             return false;
         }); 
-        
-      
-        $("#average-grade-data").on('click', function(e) {
-        	if(taskID == null || groupID == null || data_array[0]==null){	
-        		alert("No students selected!");
-            }else{
-        	$('#divTable').show();
-        	 $('#view-student-average-grades').dataTable().fnClearTable();
-            e.preventDefault();
-            var url = "/student/viewGrades/averageGrade";
-            $.get(url, {
-                selectedTaskID: taskID,
-                selectedGroupID: groupID
-            }
-            ,function(result) {
-                $(result).each(function(i, object) {
-                    var studentGrade = result[i];
-                    alert(result[i]);
-//                    var averageGrade = data_array[i];
-                   
-                    table2.row.add([
-//                           averageGrade,
-                           studentGrade
-                        ]).draw(false)
-                        .nodes()
-                        .to$();
-                })
-            });
-            return false;
-            }
-        });
-        
-      
         
     });

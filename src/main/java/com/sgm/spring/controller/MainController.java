@@ -40,6 +40,11 @@ public class MainController {
 		return "student/studentMain";
 	}
 
+	@RequestMapping(value = "/student/professorMain", method = RequestMethod.GET)
+	public String studentprofessorPage(Model model) {
+		return "student/viewProfessorMain";
+	}
+	
 	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
 	public String logoutSuccessfulPage(Model model) {
 		model.addAttribute("title", "Logout");

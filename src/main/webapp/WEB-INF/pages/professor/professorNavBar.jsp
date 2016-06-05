@@ -14,7 +14,8 @@
 				<li><a href="/professor/viewGrades">View grades</a></li>
 				<li><a href="/professor/addGrades">Add grades</a></li>
 				<li><a href="/professor/createGroup">Create group</a></li>
-				<li><a href="/professor/addStudentsToGroup">Add students to group</a></li>
+				<li><a href="/professor/addStudentsToGroup">Add students to
+						group</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/logout"><span

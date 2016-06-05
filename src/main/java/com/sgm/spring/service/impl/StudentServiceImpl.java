@@ -92,7 +92,6 @@ public class StudentServiceImpl implements StudentService {
 		List<Task> tasks = taskDao.getTasks();
 		int i = 0;
 		boolean[] recordTasks = new boolean[tasks.size()];
-		System.out.println(recordTasks.length);
 		for (Task task : tasks) {
 			averageGrade = 0;
 			i = 0;

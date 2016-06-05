@@ -13,8 +13,8 @@
 			
 				<li><a id="home" href="/student">Home</a></li>
 				<li><a id="grades" href="/student/viewGrades">My grades</a></li>
-				<li><a id="subjects" href="/student/viewAverageGrades">Average Gardes</a></li>
-				<li><a id="profesors" href="/student/viewSubjects">Professors</a></li>
+				<li><a id="subjects" href="/student/viewAverageGrades">Average gardes</a></li>
+				<li><a id="profesors" href="/student/viewProfessors">Professors</a></li>
 	
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

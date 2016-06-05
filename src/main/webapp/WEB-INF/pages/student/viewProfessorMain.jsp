@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SGM student grades</title>
+<title>SGM home</title>
 
 <link href="<c:url value="/resources/css/pageLayout.css" />"
 	rel="stylesheet">
@@ -20,25 +20,6 @@
 <script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script src="<c:url value="/resources/js/mainPageScrips.js" />"></script>
-
-<style type="text/css">
-table {
-	margin-top: 10px;
-	border: solid black 1px;
-}
-
-table  td {
-	padding: 5px;
-}
-
-.message {
-	font-size: 90%;
-	color: blue;
-	font-style: italic;
-	margin-top: 30px;
-}
-</style>
-
 </head>
 
 <body>
@@ -47,23 +28,45 @@ table  td {
 		<div class="row content">
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
-				<table border="1">
-					<tr>
-						<th>Name</th>
-						<th>Date</th>
-						<th>Description</th>
-						<th>Grade</th>
-					</tr>
-					<c:forEach items="${studentGrades}" var="info">
-						<tr>
-							<td>${info.title}</td>
-							<td>${info.date}</td>
-							<td>${info.description}</td>
-							<td>${info.grade}</td>
-						</tr>
-
-					</c:forEach>
-				</table>
+				<div id="main-content">
+		<div id="left-column">
+			<div id="logo">
+			<img src="http://imgur.com/aomB4KX.jpg" width="140" height="30" />
+			</div>
+			<div class="box">
+			<div id="main-image"><img src="http://imgur.com/SW6ht5E.jpg" width="100" height="140" /></div>
+        		<h2>Michael Scott</h2>
+        		<p><i>Professor</i></p>
+        		<p>Here are some of my interests: </p>
+				<ul style="margin-top:10px; line-height:20px; ">
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
+					<li>Information</li>
+				</ul>
+			</div>
+			</div>
+				<div id="right-column">
+			<div class="sidebar">
+				<h3>About me.</h3>
+				<p>
+				You've done basic HTML and CSS formatting, 
+				and just finished up the Intro to CSS Positioning
+				 lesson. Now you're going to apply
+				  it to build a website layout for yourself.
+				</p>
+				
+				<div class="contact-information">
+				<h3>Contact Information</h3>
+					<ul>
+						<li>Talr.: +371 63628303</li>
+						<li>E-mail:	info@venta.lv</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+			</div>
 			</div>
 			<jsp:include page="/WEB-INF/pages/rightPane.jsp" />
 		</div>
