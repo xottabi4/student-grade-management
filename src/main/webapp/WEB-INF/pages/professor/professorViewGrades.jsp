@@ -46,22 +46,14 @@
 													<div id="group-chooser"></div>
 
 													<div id="task-chooser"></div>
-
+													
+													
+													<div id="grade-chooser"></div>
+													
+													<div id="update-chooser"></div>
 											        	<hr>
-														<table id="view-student-grades" class="table table-responsive table-bordered table-hover table-condensed">
-															<thead>
-																<tr>
-																	<th>Matricula</th>
-																	<th>Name</th>
-																	<th>Surname</th>
-																	<th>Description</th>
-																	<th>Grade</th>
-																	<th>Date</th>
-																</tr>
-															</thead>
-															<tbody>
-															</tbody>
-														</table>
+														
+														<hr>
 														<div id='divTable'>
 														<table id="view-student-average-grades" class="table table-responsive table-bordered table-hover table-condensed">
 															<thead>

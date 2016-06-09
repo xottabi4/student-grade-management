@@ -84,13 +84,17 @@ public class ProfessorServiceImpl implements ProfessorService {
 			i = 0;
 			for (Grade grade : grades) {
 				if (grade.getStudent().getId() == students.get(j).getStudent().getId()) {
+					System.out.println(students.get(j).getStudent().getId());
+					System.out.println(grade.getGrade());
 					averageGrade += (double) grade.getGrade();
 					i++;
 				}
 			}
 			averageGrade = averageGrade / i;
+			System.out.println("average Grade"+averageGrade);
 			studentAverageGrades.add(averageGrade);
 		}
+		
 		return studentAverageGrades;
 	}
 
@@ -143,6 +147,28 @@ public class ProfessorServiceImpl implements ProfessorService {
 		for (Grade grade : grades) {
 			gradeDao.addGrade(grade);
 		}
+	}
+
+	@Override
+	public void deleteStudentGrades(Long gradeID) {
+		gradeDao.deleteGrade(gradeID);
+		
+	}
+
+	@Override
+	public List<Grade> getCurrentGrade(Long gradeID) {
+		List<Grade> grades = new ArrayList<Grade>();
+		grades.add(gradeDao.getGrade(gradeID));
+	return grades;
+	}
+
+	@Override
+	public void updateGrade(List<Grade> grade,String title, String description, Long changedGrade) {
+		grade.get(0).setDescription(description);
+		grade.get(0).setGrade(changedGrade);
+		grade.get(0).setTitle(title);
+		gradeDao.updateGrade(grade.get(0));
+		
 	}
 
 }

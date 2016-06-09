@@ -29,44 +29,25 @@
 			<jsp:include page="/WEB-INF/pages/leftPane.jsp" />
 			<div class="col-sm-8 text-left">
 				<div id="main-content">
-					<div id="left-column">
-						<div id="logo">
-							<img src="http://imgur.com/aomB4KX.jpg" width="140" height="30" />
-						</div>
-						<div class="box">
-							<div id="main-image">
-								<img src="http://imgur.com/1IcCAFm.jpg" width="120" height="140" />
-							</div>
-							<h2>Alexsander Frey</h2>
-							<p>
-								<i>Student</i>
-							</p>
-							<p>Here are some of my interests:</p>
-							<ul style="margin-top: 10px; line-height: 20px;">
-								<li>Information</li>
-								<li>Information</li>
-								<li>Information</li>
-								<li>Information</li>
-								<li>Information</li>
-							</ul>
-						</div>
-					</div>
-					<div id="right-column">
-						<div class="sidebar">
-							<h3>About me.</h3>
-							<p>You've done basic HTML and CSS formatting, and just
-								finished up the Intro to CSS Positioning lesson. Now you're
-								going to apply it to build a website layout for yourself.</p>
-
-							<div class="contact-information">
-								<h3>Contact Information</h3>
-								<ul>
-									<li>Talr.: +371 63628303</li>
-									<li>E-mail: info@venta.lv</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+				<h1>Welome</h1>
+				<hr>
+				<p>A TR row node, TD/TH cell node or an integer. If given as a TR node 
+				then the data source for the whole row will be returned. If given as a
+				 TD/TH cell node then iCol will be automatically calculated and the data
+				  for the cell returned. If given as an integer, then this is treated as
+				   the aoData internal data index for the row (see fnGetPosition) and the
+				    data for that row used.A TR row node, TD/TH cell node or an integer. If given as a TR node 
+				then the data source for the whole row will be returned. If given as a
+				 TD/TH cell node then iCol will be automatically calculated and the data
+				  for the cell returned. If given as an integer, then this is treated as
+				   the aoData internal data index for the row (see fnGetPosition) and the
+				    data for that row used.A TR row node, TD/TH cell node or an integer. If given as a TR node 
+				then the data source for the whole row will be returned. If given as a
+				 TD/TH cell node then iCol will be automatically calculated and the data
+				  for the cell returned. If given as an integer, then this is treated as
+				   the aoData internal data index for the row (see fnGetPosition) and
+				    </p>
+				
 				</div>
 			</div>
 			<jsp:include page="/WEB-INF/pages/rightPane.jsp" />

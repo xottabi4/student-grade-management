@@ -24,6 +24,7 @@ import com.sgm.spring.model.Grade;
 import com.sgm.spring.model.StudentGroup;
 import com.sgm.spring.model.Task;
 import com.sgm.spring.model.UniveristySubject;
+import com.sgm.spring.model.json.GradeIDJSON;
 import com.sgm.spring.model.json.StudentGradeJSON;
 import com.sgm.spring.model.json.StudentGroupJSON;
 import com.sgm.spring.service.ProfessorService;
@@ -59,6 +60,8 @@ public class ProfessorController {
 		model.addAttribute("facultys", facultys);
 		return "professor/professorAddStudentsToGroup";
 	}
+	
+	
 
 	@RequestMapping(value = "/professor/addStudentsToGroup", method = RequestMethod.POST)
 	public @ResponseBody JsonResponse addStudentsToGroup(@RequestBody StudentGroupJSON students) {
@@ -82,6 +85,37 @@ public class ProfessorController {
 		}
 		return "Failure!";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/professor/viewGrades/updateCurrentGrades", method = RequestMethod.POST)
+	public @ResponseBody String updateStudentGrades(@RequestParam(value = "selectedGradesID") Long selectedGradesID,
+			@RequestParam(value = "changedTitle") String changedTitle,
+			@RequestParam(value = "changedDescription") String changedDescription,
+			@RequestParam(value = "changedGrade") Long changedGrade)
+			{
+		
+		System.out.println(changedTitle);
+			System.out.println(changedDescription);
+			System.out.println(changedGrade);
+			System.out.println("TBUS"+selectedGradesID);
+			List<Grade> thisGrade = professorService.getCurrentGrade(selectedGradesID);
+			professorService.updateGrade(thisGrade,changedTitle,changedDescription,changedGrade);
+			return "Successfully updated grades!";
+
+	}
+	
+	
+	
+	//delete grade
+	@RequestMapping(value = "/professor/deleteStudentGrades", method = RequestMethod.POST)
+	public @ResponseBody JsonResponse deleteStudentGrades(@RequestParam(value = "selectedGradesID") Long selectedGradesID){
+			professorService.deleteStudentGrades(selectedGradesID);
+			return new JsonResponse("Successfully deleted grades!", true);
+	}
+		
+	
 
 	// get courses controller with post
 	@RequestMapping(value = "/professor/createGroup/viewCourses", method = RequestMethod.GET)
@@ -116,13 +150,33 @@ public class ProfessorController {
 		return "professor/professorViewTasks";
 	}
 
-	@RequestMapping(value = "/professor/viewGrades/getGrades", method = RequestMethod.GET)
+	@RequestMapping(value = "/professor/viewGrades/getAllGrades", method = RequestMethod.GET)
 	public @ResponseBody List<Grade> getGrades(@RequestParam(value = "selectedGroupID") Long selectedGroupID,
 			@RequestParam(value = "selectedTaskID") Long selectedTaskID) {
 		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskID);
 		return grades;
 	}
 
+	@RequestMapping(value = "/professor/viewGrades/updateGrades", method = RequestMethod.GET)
+	public String getCurrentGrade(@RequestParam(value = "selectedGradesID") Long selectedGrade, Model model) {
+		System.out.println(selectedGrade);
+		List<Grade> grade = professorService.getCurrentGrade(selectedGrade);
+		model.addAttribute("grade", grade);
+		System.out.println(grade.size());
+		return "professor/professorUpdateGarde";
+	}
+	
+	
+	@RequestMapping(value = "/professor/viewGrades/getGrades", method = RequestMethod.GET)
+	public String getGrades(Model model,@RequestParam(value = "selectedGroupID") Long selectedGroupID,
+			@RequestParam(value = "selectedTaskID") Long selectedTaskID) {
+		List<Grade> grades = professorService.getGrades(selectedGroupID, selectedTaskID);
+		model.addAttribute("studentGrades",grades);
+		return "professor/professorViewStudentGrades";
+	}
+	
+	
+	
 	@RequestMapping(value = "/professor/viewGrades/averageGrade", method = RequestMethod.GET)
 	public @ResponseBody List<Double> getStudentAverageGrade(@RequestParam(value = "selectedGroupID") Long selectedGroupID,
 			@RequestParam(value = "selectedTaskID") Long selectedTaskID) {
@@ -154,4 +208,12 @@ public class ProfessorController {
 		return "professor/professorAddGrades";
 	}
 
+	@RequestMapping(value = "/professor/updateGardes", method = RequestMethod.GET)
+	public String getCurrentGrade( Model model) {
+//		Grade grade = professorService.getCurrentGrade(selectedGrade);
+//		model.addAttribute("grade", grade);
+		return "professor/professorUpdateGarde";
+	}
+	
+	
 }
