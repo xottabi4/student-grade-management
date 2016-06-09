@@ -43,21 +43,30 @@
 
 														<div id="group-chooser"></div>
 														<hr>
-															<a href="#" id="add-row" class="btn btn-primary btn-md pull-right " role="button">Add row</a>
-															<table id="add-students" class="table table-responsive table-bordered table-hover table-condensed">
-																<thead>
-																	<tr>
-																		<th>Matrikula</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr class="table-cell">
-																		<td><input type="text" class="form-control matrikula" value="" name="text"/></td>
-																	</tr>
-																</tbody>
-															</table>
-															<div class="col-sm-6 center-block">
-																<a href="#" id="submit-data" class="btn btn-primary btn-lg pull-right " role="button">Submit</a>
+															<div class="col-sm-12">
+																<a href="#" id="add-row" class="btn btn-primary btn-md pull-right " role="button">Add row</a>
+															</div>
+
+															<div class="row">
+																<div class="col-sm-6 col-sm-offset-3 ">
+																	<table id="add-students" class="table table-responsive table-bordered table-hover table-condensed">
+																		<thead>
+																			<tr>
+																				<th>Matrikula</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr class="table-cell">
+																				<td>
+																					<input type="text" class="input-large span6 form-control matrikula" value="" name="text"/>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																	<div class="col-sm-6 text-center">
+																		<a href="#" id="submit-data" class="btn btn-primary btn-lg pull-right center-block" role="button">Submit</a>
+																	</div>
+																</div>
 															</div>
 															<p id="test"></p>
 														</div>

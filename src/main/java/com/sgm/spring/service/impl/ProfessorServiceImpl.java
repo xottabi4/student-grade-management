@@ -57,15 +57,15 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
-		// Faculty faculty = facultyDao.getFaculty(facultyTitle);
-		// return subjectDao.getSubjects(faculty.getId());
 		return subjectDao.getSubjects(facultyTitle.trim());
 	}
 
 	@Override
-	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle) {
+	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle,
+			String professorTitle) {
 		Long courseID = Long.valueOf(course.trim()).longValue();
-		return studentGroupDao.getGroups(facultyTitle.trim(), courseID, subjectTitle.trim());
+		User professor = userDao.getUser(professorTitle);
+		return studentGroupDao.getGroups(facultyTitle.trim(), courseID, subjectTitle.trim(), professor);
 	}
 
 	@Override
@@ -100,7 +100,8 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
-	public void addStudentsToGroup(List<User> students, Long groupID) throws UserDoesntExistException, UserIsNotStudentException {
+	public void addStudentsToGroup(List<User> students, Long groupID)
+			throws UserDoesntExistException, UserIsNotStudentException {
 		AllGroups allGroup;
 		for (User student : students) {
 			student = userDao.getUser(student.getId());
@@ -143,6 +144,28 @@ public class ProfessorServiceImpl implements ProfessorService {
 		for (Grade grade : grades) {
 			gradeDao.addGrade(grade);
 		}
+	}
+
+	@Override
+	public void deleteGroup(Long id) {
+		studentGroupDao.deleteGroup(id);
+	}
+
+	@Override
+	public List<User> getStudentsInGroup(Long groupID) {
+		return allGroupsDao.getStudents(groupID);
+	}
+
+	@Override
+	public void removeStudentFromGroup(Long groupID, Long userID) {
+		allGroupsDao.deleteGroup(groupID, userID);
+	}
+
+	@Override
+	public void updateStudentGroup(Long groupID, String newGroupTitle) {
+		StudentGroup studentGroup = studentGroupDao.getGroup(groupID);
+		studentGroup.setTitle(newGroupTitle);
+		studentGroupDao.updateGroup(studentGroup);
 	}
 
 }

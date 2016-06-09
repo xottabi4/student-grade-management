@@ -9,8 +9,8 @@ $(document).ready(
         var groupID;
         var table = $('#set-student-grades').DataTable();
         var students = {};
-        var gradeProblem=false;
-       
+        var gradeProblem = false;
+
         $("#faculty-selection>li").on('click', function(e) {
             e.preventDefault();
             $("#course-chooser").empty();
@@ -92,14 +92,14 @@ $(document).ready(
             selectedTaskTitle = $this.text();
             var url = "/professor/addGrades/setGrades";
             $.get(url, {
-               // selectedTaskID: taskID,
+                // selectedTaskID: taskID,
                 selectedGroupID: groupID
             }, function(result) {
                 $(result).each(function(i, object) {
                     var studentGrades = result[i];
-                    students[i]=studentGrades.student.matrikula;
+                    students[i] = studentGrades.student.matrikula;
                     table.row.add([
-                            studentGrades.student.matrikula,     
+                            studentGrades.student.matrikula,
                             studentGrades.student.name,
                             studentGrades.student.surname,
                             '<td><input type="text" class="form-control description" value="" name="text"/></td>',
@@ -116,72 +116,70 @@ $(document).ready(
             var data = table.$('input');
             var data_array = [];
             var item = {};
-            var student={};
-            var i=0;
-            var group={};
-            var task={};
-            gradeProblem=false;
+            var student = {};
+            var i = 0;
+            var group = {};
+            var task = {};
+            gradeProblem = false;
             var themeTitle = $('#theme-title-input>input').val().trim();
             $.each(data, function(index, element) {
                 if ($(this).hasClass('description')) {
                     item = {};
-                    student={};
-                    group={};
-                    task={};
-                    group['groupID']=groupID;
-                    task['taskID']= taskID;
-                    student['matrikula']=students[i];
-                    item['task']=task;
-                    item['studentGroup']=group;
+                    student = {};
+                    group = {};
+                    task = {};
+                    group['groupID'] = groupID;
+                    task['taskID'] = taskID;
+                    student['matrikula'] = students[i];
+                    item['task'] = task;
+                    item['studentGroup'] = group;
                     item['student'] = student;
                     item['description'] = $(this).val();
-                    item['title']=themeTitle;
-                    i=i+1;
+                    item['title'] = themeTitle;
+                    i = i + 1;
                 } else if ($(this).hasClass('grade')) {
-                	if(Math.round($(this).val()) != $(this).val()) {
+                    if (Math.round($(this).val()) != $(this).val()) {
                         alert("Grade format wrong!");
-                        gradeProblem=true;
-                    }else if($(this).val()==""){
-                    	 alert("Grades not inputed!");
-                         gradeProblem=true;
+                        gradeProblem = true;
+                    } else if ($(this).val() == "") {
+                        alert("Grades not inputed!");
+                        gradeProblem = true;
+                    } else if ((parseInt($(this).val())) > 10 || (parseInt($(this).val())) < 0) {
+                        alert("Wrong grades inputed!");
+                        gradeProblem = true;
+                    } else {
+
+                        item['grade'] = $(this).val();
+                        //isNumber($(this).val());
+                        data_array.push(item);
                     }
-                    else if((parseInt($(this).val()))>10||(parseInt($(this).val()))<0){
-                    	alert("Wrong grades inputed!");
-                        gradeProblem=true;
-                    }
-                    else{
-                    	
-                	item['grade'] = $(this).val();
-                  //isNumber($(this).val());
-               	 data_array.push(item);}
-                } 
-            });
-            var serialized = JSON.stringify({
-	             groupGrades: data_array,
-            });
-           // alert("table has \n" + serialized);
-            if(themeTitle == "" || themeTitle == null){
-        		alert("You forgot to write the Theme!");
-        	} else if (gradeProblem==true){
-        		
-        	}else{
-            $.ajax({
-                url: "/professor/setStudentGrades",
-                type: 'POST',
-                data: serialized,
-                dataType: "html",
-                contentType: 'application/json',
-                mimeType: 'application/json',
-                success: function(data) {
-                    alert(data);
-                    return false;
                 }
             });
-        	}
-            
-            
+            var serialized = JSON.stringify({
+                groupGrades: data_array,
+            });
+            // alert("table has \n" + serialized);
+            if (themeTitle == "" || themeTitle == null) {
+                alert("You forgot to write the Theme!");
+            } else if (gradeProblem == true) {
+
+            } else {
+                $.ajax({
+                    url: "/professor/setStudentGrades",
+                    type: 'POST',
+                    data: serialized,
+                    dataType: "html",
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(data) {
+                        alert(data);
+                        location.reload();
+                        return false;
+                    }
+                });
+            }
+
+
             return false;
         });
     });
-
-

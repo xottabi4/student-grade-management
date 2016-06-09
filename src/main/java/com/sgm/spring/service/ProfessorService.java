@@ -20,13 +20,14 @@ public interface ProfessorService {
 
 	public List<UniveristySubject> getSubjects(String facultyTitle);
 
-	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle);
+	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle,
+			String professorTitle);
 
 	public List<Grade> getGrades(Long groupID, Long taskID);
 
 	public List<AllGroups> getSelectedGroup(Long selectedGroupID);
-	
-	public List<Double> getAverageGrade(List<AllGroups> students,List<Grade> grades);
+
+	public List<Double> getAverageGrade(List<AllGroups> students, List<Grade> grades);
 
 	public List<Task> getTasks();
 
@@ -37,4 +38,12 @@ public interface ProfessorService {
 
 	public void addStudentGroup(String groupTitle, Long course, String professorName, String subjectTitle,
 			String facultyTitle);
+
+	public void deleteGroup(Long id);
+
+	public List<User> getStudentsInGroup(Long groupID);
+
+	public void removeStudentFromGroup(Long groupID, Long userID);
+
+	public void updateStudentGroup(Long groupID, String newGroupTitle);
 }

@@ -7,7 +7,7 @@
 				<meta name="viewport" content="width=device-width, initial-scale=1">
 					<meta name="description" content="">
 						<meta name="author" content="">
-							<title>SGM professor create group</title>
+							<title>SGM professor update group</title>
 
 							<link href="<c:url value=" /resources/css/pageLayout.css" />" rel="stylesheet">
 								<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.css"/>
@@ -17,7 +17,7 @@
 										<script type="text/javascript" src="https://cdn.datatables.net/u/bs/jqc-1.12.3,dt-1.10.12/datatables.min.js"></script>
 										<script src="/webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 										<script src="<c:url value=" /resources/js/mainPageScrips.js" />"></script>
-										<script src="<c:url value=" /resources/js/professor/createGroup.js" />"></script>
+										<script src="<c:url value=" /resources/js/professor/updateGroup.js" />"></script>
 									</head>
 
 									<body>
@@ -40,25 +40,27 @@
 														<div id="course-chooser"></div>
 
 														<div id="subject-chooser"></div>
-															<hr>
-														<div class="row">
-															<div class="col-sm-4 ">
 
-																<div id="group-title-input" class="input-group" style="margin-top: 20px;">
-																	<span class="input-group-addon" id="basic-addon1">Group title:
-																	</span>
-																	<input type="text" class="form-control" aria-describedby="basic-addon1"></div>
+														<div id="group-chooser"></div>
+														<hr>
+															<div class="row">
+																<div class="col-sm-4 ">
+
+																	<div id="group-title-input" class="input-group" style="margin-top: 20px;">
+																		<span class="input-group-addon" id="basic-addon1">Group title:
+																		</span>
+																		<input type="text" class="form-control" aria-describedby="basic-addon1"></div>
+																	</div>
+
+																</div>
+																<div class="col-sm-6 center-block">
+																	<a href="#" id="submit-data" class="btn btn-primary btn-lg pull-right " role="button">Update</a>
 																</div>
 
 															</div>
-															<div class="col-sm-6 center-block">
-																<a href="#" id="submit-data" class="btn btn-primary btn-lg pull-right " role="button">Create</a>
-															</div>
-
+															<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 														</div>
-														<jsp:include page="/WEB-INF/pages/rightPane.jsp"/>
 													</div>
-												</div>
-												<jsp:include page="/WEB-INF/pages/footer.jsp"/>
-											</body>
-										</html>
+													<jsp:include page="/WEB-INF/pages/footer.jsp"/>
+												</body>
+											</html>

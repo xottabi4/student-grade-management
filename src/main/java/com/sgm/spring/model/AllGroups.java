@@ -24,7 +24,7 @@ public class AllGroups implements Serializable {
 	private static final long serialVersionUID = -8340346885311573207L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 
@@ -59,6 +59,5 @@ public class AllGroups implements Serializable {
 	public void setStudentGroup(StudentGroup studentGroup) {
 		this.studentGroup = studentGroup;
 	}
-
 
 }

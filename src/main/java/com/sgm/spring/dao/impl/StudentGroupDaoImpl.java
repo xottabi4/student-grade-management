@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sgm.spring.dao.StudentGroupDao;
 import com.sgm.spring.model.StudentGroup;
-import com.sgm.spring.model.Task;
+import com.sgm.spring.model.User;
 
 @Repository
 public class StudentGroupDaoImpl implements StudentGroupDao {
@@ -25,17 +25,6 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 	@Override
 	public void addGroup(StudentGroup studentGroup) {
 		getCurrentSession().save(studentGroup);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle) {
-		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "inner join g.subject as s "
-				+ "where f.title = :faculty and " + "s.title = :subject and " + "g.course = :course";
-		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle)
-				.setParameter("subject", subjectTitle).setParameter("course", courseID);
-		List<StudentGroup> studentGroup = query.list();
-		return studentGroup;
 	}
 
 	@Override
@@ -53,13 +42,56 @@ public class StudentGroupDaoImpl implements StudentGroupDao {
 		return groups.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle) {
+		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "inner join g.subject as s "
+				+ "where f.title = :faculty and " + "s.title = :subject and " + "g.course = :course";
+		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle)
+				.setParameter("subject", subjectTitle).setParameter("course", courseID);
+		List<StudentGroup> studentGroup = query.list();
+		return studentGroup;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StudentGroup> getGroups(String facultyTitle, Long courseID, String subjectTitle, User professor) {
+		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "inner join g.subject as s "
+				+ "where f.title = :faculty and " + "s.title = :subject and " + "g.course = :course and "
+				+ "g.user = :professor";
+		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyTitle)
+				.setParameter("subject", subjectTitle).setParameter("course", courseID)
+				.setParameter("professor", professor);
+		List<StudentGroup> studentGroup = query.list();
+		return studentGroup;
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<StudentGroup> getAllGroups(Long facultyID) {
 		String sql = "select g from StudentGroup g " + "inner join g.faculty as f " + "where f.id = :faculty";
 		Query query = getCurrentSession().createQuery(sql).setParameter("faculty", facultyID);
 		List<StudentGroup> groups = query.list();
 		return groups;
-		
+
+	}
+
+	@Override
+	public void deleteGroup(Long id) {
+		StudentGroup group = getGroup(id);
+		getCurrentSession().delete(group);
+	}
+
+	@Override
+	public void updateGroup(StudentGroup group) {
+		StudentGroup groupToUpdate = getGroup(group.getId());
+		groupToUpdate.setCourse(group.getCourse());
+		groupToUpdate.setFaculty(group.getFaculty());
+		groupToUpdate.setGroups(group.getGroups());
+		groupToUpdate.setSubject(group.getSubject());
+		groupToUpdate.setTitle(group.getTitle());
+		groupToUpdate.setUser(group.getUser());
+		getCurrentSession().update(groupToUpdate);
 	}
 
 }

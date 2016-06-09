@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`user_type` (
   CONSTRAINT `FK_user_roles` 
 		FOREIGN KEY (`User_ID`) 
 		REFERENCES `student_grade_management`.`user` (`ID`)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -71,7 +71,9 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`university_subject` (
   INDEX `university_subject_ibfk_1_idx` (`Faculty_ID` ASC),
   CONSTRAINT `university_subject_ibfk_1`
     FOREIGN KEY (`Faculty_ID`)
-    REFERENCES `student_grade_management`.`faculty` (`ID`))
+    REFERENCES `student_grade_management`.`faculty` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -93,14 +95,18 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`student_group` (
   CONSTRAINT `student_group_ibfk_1`
     FOREIGN KEY (`Professor_ID`)
     REFERENCES `student_grade_management`.`user` (`ID`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   CONSTRAINT `student_group_ibfk_2`
     FOREIGN KEY (`Subject_ID`)
-    REFERENCES `student_grade_management`.`university_subject` (`ID`),
+    REFERENCES `student_grade_management`.`university_subject` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   CONSTRAINT `student_group_ibfk_3`
     FOREIGN KEY (`Faculty_ID`)
-    REFERENCES `student_grade_management`.`faculty` (`ID`))
+    REFERENCES `student_grade_management`.`faculty` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -118,13 +124,13 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`all_groups` (
   CONSTRAINT `fk_all_groups_1`
     FOREIGN KEY (`Student_ID`)
     REFERENCES `student_grade_management`.`user` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   CONSTRAINT `fk_all_groups_2`
     FOREIGN KEY (`Student_group_ID`)
     REFERENCES `student_grade_management`.`student_group` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -145,13 +151,19 @@ CREATE TABLE IF NOT EXISTS `student_grade_management`.`grade` (
   INDEX `grade_ibfk_1_idx` (`Student_ID` ASC),
   CONSTRAINT `grade_ibfk_1`
     FOREIGN KEY (`Student_ID`)
-    REFERENCES `student_grade_management`.`user` (`ID`),
+    REFERENCES `student_grade_management`.`user` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   CONSTRAINT `grade_ibfk_2`
     FOREIGN KEY (`Task_ID`)
-    REFERENCES `student_grade_management`.`task` (`ID`),
+    REFERENCES `student_grade_management`.`task` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
   CONSTRAINT `grade_ibfk_3`
     FOREIGN KEY (`Group_ID`)
-    REFERENCES `student_grade_management`.`student_group` (`ID`))
+    REFERENCES `student_grade_management`.`student_group` (`ID`)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
