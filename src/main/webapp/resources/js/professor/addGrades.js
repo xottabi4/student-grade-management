@@ -174,12 +174,9 @@ $(document).ready(
                     success: function(data) {
                         alert(data);
                         location.reload();
-                        return false;
                     }
                 });
             }
-
-
             return false;
         });
     });

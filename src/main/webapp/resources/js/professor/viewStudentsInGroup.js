@@ -96,7 +96,6 @@ $(document).ready(function() {
         }, function(result) {
             table.row($this.parents('tr')).remove().draw();
             alert(result.message);
-            // location.reload();
         });
         return false;
     });

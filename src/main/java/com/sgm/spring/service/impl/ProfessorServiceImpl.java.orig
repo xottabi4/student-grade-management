@@ -57,8 +57,6 @@ public class ProfessorServiceImpl implements ProfessorService {
 
 	@Override
 	public List<UniveristySubject> getSubjects(String facultyTitle) {
-		// Faculty faculty = facultyDao.getFaculty(facultyTitle);
-		// return subjectDao.getSubjects(faculty.getId());
 		return subjectDao.getSubjects(facultyTitle.trim());
 	}
 
@@ -86,13 +84,17 @@ public class ProfessorServiceImpl implements ProfessorService {
 			i = 0;
 			for (Grade grade : grades) {
 				if (grade.getStudent().getId() == students.get(j).getStudent().getId()) {
+					System.out.println(students.get(j).getStudent().getId());
+					System.out.println(grade.getGrade());
 					averageGrade += (double) grade.getGrade();
 					i++;
 				}
 			}
 			averageGrade = averageGrade / i;
+			System.out.println("average Grade"+averageGrade);
 			studentAverageGrades.add(averageGrade);
 		}
+		
 		return studentAverageGrades;
 	}
 
@@ -135,7 +137,21 @@ public class ProfessorServiceImpl implements ProfessorService {
 		studentGroup.setFaculty(faculty);
 		studentGroupDao.addGroup(studentGroup);
 	}
-@Override
+
+	@Override
+	public List<AllGroups> getSelectedGroup(Long selectedGroupID) {
+		return allGroupsDao.getSelectedGroup(selectedGroupID);
+	}
+
+	@Override
+	public void addStudentGrades(List<Grade> grades) {
+		for (Grade grade : grades) {
+			gradeDao.addGrade(grade);
+		}
+	}
+
+	@Override
+<<<<<<< HEAD
 	public void deleteGroup(Long id) {
 		studentGroupDao.deleteGroup(id);
 	}
@@ -155,20 +171,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 		StudentGroup studentGroup = studentGroupDao.getGroup(groupID);
 		studentGroup.setTitle(newGroupTitle);
 		studentGroupDao.updateGroup(studentGroup);
-	}
-	@Override
-	public List<AllGroups> getSelectedGroup(Long selectedGroupID) {
-		return allGroupsDao.getSelectedGroup(selectedGroupID);
-	}
-
-	@Override
-	public void addStudentGrades(List<Grade> grades) {
-		for (Grade grade : grades) {
-			gradeDao.addGrade(grade);
-		}
-	}
-
-@Override
+=======
 	public void deleteStudentGrades(Long gradeID) {
 		gradeDao.deleteGrade(gradeID);
 		
@@ -188,12 +191,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 		grade.get(0).setTitle(title);
 		gradeDao.updateGrade(grade.get(0));
 		
+>>>>>>> 92834fec9aaaccaae236a7e3b8a2beaeaab30a9c
 	}
-
-
-
-
-
-
 
 }

@@ -23,6 +23,8 @@ public interface ProfessorService {
 	public List<StudentGroup> getStudentGroup(String facultyTitle, String course, String subjectTitle,
 			String professorTitle);
 
+	public void updateGrade(List<Grade> grade, String title, String description, Long changedGrade);
+
 	public List<Grade> getGrades(Long groupID, Long taskID);
 
 	public List<AllGroups> getSelectedGroup(Long selectedGroupID);
@@ -32,6 +34,10 @@ public interface ProfessorService {
 	public List<Task> getTasks();
 
 	public void addStudentGrades(List<Grade> grades);
+
+	public void deleteStudentGrades(Long gradeID);
+
+	public List<Grade> getCurrentGrade(Long gradeID);
 
 	public void addStudentsToGroup(List<User> students, Long groupID)
 			throws UserDoesntExistException, UserIsNotStudentException;
