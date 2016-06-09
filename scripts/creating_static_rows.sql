@@ -52,6 +52,7 @@ select * from all_groups;
 select * from grade;
 select * from user_type;
 
+
 -- delete from user where ID = 13;
 -- ALTER TABLE user AUTO_INCREMENT=3;
 -- DELETE FROM task;
